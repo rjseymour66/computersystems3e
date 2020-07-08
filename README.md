@@ -85,3 +85,29 @@ High-level overview of what happens when you run hello-world.c:
 5. Uses DMA (Direct Access Memory) to put data directly from disk to main memory. 
 6. After code and data in hello object file is loaded into main memory, the processor executes the machine-language in the program's main routing/method.
    - Copy the bytes in the 'hello world\n' string from memory to register file, then to display device
+
+### 1.5 Caches Matter
+
+Lots of copying happens
+- The program is copied from disk to main memory, then copied to the processor, then copied to the display device.  
+- Larger storage devices are expensive and slower
+- _Processor-memory gap_ - the processor reads from the file registers faster than from the main memory
+
+Cache memory
+- Benefits of both large memory and easy access by exploiting locality so that you can perform memory operations quickly
+- Temporary storage for information that the processor is likely to need again soon
+- Created to lessen the _processor-memory gap_
+- **L1 cache** - uses SRAM (standard access random memory) is on the processor chip, holds 10s of 1000s of bytes and can be accessed nearly as quickly as at register file
+- **L2 cache** - uses SRAM (standard access random memory) 100s of 1000s - Mils of bytes, connected to the processor by a special bus. The L2 is not as fast as accessing the L1 cache, but it is much faster than accessing the main memory.
+- Some newer systems even have an **L3 cache**
+
+**Memory heirarchy**  
+The smaller the component, the faster and more expensive.  
+0. CPU Registers - hold words from retrieved from cache memory
+1. L1 cache (SRAM) - holds cache lines retrieved from L2 cache
+2. L2 cache (SRAM) - holds cache lines retrieved from L3 cache
+3. L3 cache (SRAM) - holds cache lines retrieved from memory
+4. Main memory (DRAM) - holds disk blocks retrieved from local disk
+5. Local secondary storage - hold files retrieved from disks on remote network servers 
+
+### 1.6 Storage Devices Form a Heirarchy
