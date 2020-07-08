@@ -181,3 +181,46 @@ A sequence of bytes.
 - All input and output is performed by reading and writing files using _Unix I/O_ system calls.
 
 ### 1.8 Systems Communicate with Other Systems Using Networks
+Outside networks can be seen as another I/O device. The internet is based on copying information over a network.  
+
+Remote hello.c example over telnet:
+1. Log in to a remote machine
+2. Run a shell
+   - The shell is waiting for a command
+3. We type 'hello'
+4. Client sends string to server
+5. Server receives string, passes along to remote shell program
+6. Remote shell runs hello and passes output back to server
+7. Server sends the output across network to telnet client
+8. Client prints output string on local terminal
+
+### 1.9 Important themes
+
+**Amdahl's law**
+When we speed up one part of a system, the effect on the overall system performance depends on both how significant this part was and how much it sped up. To significantly speed up the entire system, we must improve the speed of a very large fraction of the overall system.
+
+T<sub>old</sub> = total time required to execute a system  
+x = amount of time of T<sub>old</sub> a part of the system requires to run  
+k = amount that the performance of x is improved  
+xT<sub>old</sub> = original performance time  
+(xT<sub>old</sub>)/k = new performance time  
+
+Execution time equation:  
+T<sub>new</sub> = (1 - x)T<sub>old</sub> + (T<sub>old</sub>) / k  
+= T<sub>old</sub>[(1 - x) + x / k]
+
+So, the net speedup S = T<sub>old</sub> / T<sub>old</sub>T<sub>new</sub>:  
+
+S = 1 / [(1 - x) + x / k]  
+
+Example:
+
+If a part of the system that initially consumed 60% of the time is sped up by 3.  
+- x = 0.6
+- k = 3  
+
+S = 1 / [(1 - .6) + .6 / 3] = 1 / 0.4 + 0.2 = 1.67  
+
+So, the part that consumed 60% is sped up by 3, but the entire system is only sped up by 1.67.
+
+So, one part of the system was improved, but the net speedup is considerably less that the speedup for one part
