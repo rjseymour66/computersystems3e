@@ -103,6 +103,7 @@ Cache memory
 
 **Memory heirarchy**  
 The smaller the component, the faster and more expensive.  
+
 0. CPU Registers - hold words from retrieved from cache memory
 1. L1 cache (SRAM) - holds cache lines retrieved from L2 cache
 2. L2 cache (SRAM) - holds cache lines retrieved from L3 cache
