@@ -266,3 +266,16 @@ Parallelism can be exploited at the following 3 levels of abstraction (highest-l
    - virtual memory - program memory
    - processes - running a program
    - virtual machine - abstraction of entire computer, including the operatin system, the processor, and the programs
+
+# Part I: Program Structure and Execution
+
+# Representing and Manipulating Information
+- Modern computers store and process information as two-valued signals called bits (binary digits)
+- Fibanacci brought them to the West from Arabs/India in the 13th century  
+
+Three important representations of numbers with binary  
+1. _Unsigned_ - based on traditional binary, represent numbers greater than or equal to 0.
+2. _Two's-complement_ - most common way to represent signed integers (numbers that are positive or negative)
+3. _Floating-point_ - base-2 version of scientific notation for representing real numbers.
+
+- _overflow_ is when results of a computation are too large to be represented by the limited number of bits used to encode a number.
