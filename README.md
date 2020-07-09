@@ -101,8 +101,8 @@ Cache memory
 - **L2 cache** - uses SRAM (standard access random memory) 100s of 1000s - Mils of bytes, connected to the processor by a special bus. The L2 is not as fast as accessing the L1 cache, but it is much faster than accessing the main memory.
 - Some newer systems even have an **L3 cache**
 
-### 1.6 Storage Devices Form a Heirarchy
-Storage at one level serves as a cache for storage at the next lower level. The smaller the component, the faster and more expensive.  
+### 1.6 Storage Devices Form a Hierarchy
+Since computers spend most of their time copying data between memory, I/O devices, and CPU registers, storage is arranged in a hierarchy. Storage at one level serves as a cache for storage at the next lower level. The smaller the component, the faster and more expensive.  
 
 0. CPU Registers - hold words from retrieved from cache memory
 1. L1 cache (SRAM) - holds cache lines retrieved from L2 cache
@@ -118,10 +118,10 @@ OS has 2 purposes:
 1. Protect the hardware from misuse by runaway applications
 2. Provide applications with simple and uniform mechanism for manipulating complicated and varying low-level hardware devices.
 
-OS fulfills these purposes using:
-Processes - abstraction for the processor, main memory, and I/O devices
-Virtual memory - abstraction for the main memory, and I/O devices
-Files - abstraction for I/O devices
+OS fulfills these purposes using (notice how they build on each other):
+- Files - abstraction for I/O devices
+- Virtual memory - abstraction for the main memory, and I/O devices
+- Processes - abstraction for the processor, main memory, and I/O devices
 
 **Processes**  
 A _process_ is the OS's abstraction for running a program. Multiple processes run concurrently on the same system, meaning that the instructions of one process are interleaved with the instructions of another process becuase there are more processes to run that there are CPUs to run them. Processes provide the illusion that the program that is running is the only program in the system, and it has exclusive use of the processor, main memory, and I/O devices. The OS makes this happen using _context switching_. 
@@ -225,24 +225,44 @@ S = 1 / [(1 - .6) + .6 / 3] = 1 / 0.4 + 0.2 = 1.67
 So, the part that consumed 60% is sped up by 3, but the entire system is only sped up by 1.67.
 
 **Concurrency and Parallelism**  
-_Concurrency_ - system with mutliple, simultaneous activities
+_Concurrency_ - system with mutliple, simultaneous activities  
 _Parallelism_ - the use of concurrency to make the system run faster  
 
 Parallelism can be exploited at the following 3 levels of abstraction (highest-level to lowest):
 1. Thread-level concurrency
-   - Originally, concurrency was simulated by a single computer rapidly switching processes
-      - Called uniprocessor system
-      - Allows multiple users to interact with the same system at once (i.e. web server), or have multiple windows open doing things
-   - Multiprocessor - a system consisting of multiple processors all under the control of a single operating system kernel
-      - more common recently due to multi-core processors and hyperthreading
-      - multi-core processors have several CPUs (called cores) integrated onto a single integrated-circuit chip. 
-   - **Common architecture** - 4 CPU cores, each with its own L1 and L2 caches. L1 cache split in 2 (1 part for data, 1 part for recently fetched instructions)
-      - share higher level caches and the main memory interface
-   - _hyperthreading_ - also called simultaneous mutli-threading - allows a single CPU to execute multiple flows of control. 
-      - it is having multiple parts of some parts of the CPU and single copies of others
-      - decides which thread to execute on a cycle-by-cycle basis
-      - CPU takes better advantage of its processor resources
-   - Improve system performance
-      - Reduces the need to simulate concurrency when performing multiple tasks
-      - Can run a single application program faster, but only if that program is expressed in terms of multiple threads that can effectively execute in parallel. 
+- Originally, concurrency was simulated by a single computer rapidly switching processes
+   - Called uniprocessor system
+   - Allows multiple users to interact with the same system at once (i.e. web server), or have multiple windows open doing things
+- Multiprocessor - a system consisting of multiple processors all under the control of a single operating system kernel
+   - more common recently due to multi-core processors and hyperthreading
+   - multi-core processors have several CPUs (called cores) integrated onto a single integrated-circuit chip. 
+- **Common architecture** - 4 CPU cores, each with its own L1 and L2 caches. L1 cache split in 2 (1 part for data, 1 part for recently fetched instructions)
+   - share higher level caches and the main memory interface
+- _hyperthreading_ - also called simultaneous mutli-threading - allows a single CPU to execute multiple flows of control. 
+   - it is having multiple parts of some parts of the CPU and single copies of others
+   - decides which thread to execute on a cycle-by-cycle basis
+   - CPU takes better advantage of its processor resources
+- Improve system performance
+   - Reduces the need to simulate concurrency when performing multiple tasks
+   - Can run a single application program faster, but only if that program is expressed in terms of multiple threads that can effectively execute in parallel. 
 2. Instruction-level parallelism
+- Modern proessors can execute multiple instructions at one time 
+- Multiple instructions per clock cycle (2 - 4 per cycle)
+- An instruction may take 20 cycles or more to complete, but they can process as many as 100 instructions at a time using pipelining
+- _Pipelining_ - actions required to execute an instruction are partitined into different steps and the processor hardware is organized as a series of stages, each performing one of these steps.
+   - the stages can operate in parallel. So, they can work on different stages at different times
+- _Superscalar processors_ - processors that sustain executino rates faster than 1 instruction per cycle
+3. Single-Instruction, Multiple-Data (SIMD) Parallelism
+- modern processors have special hardware that allows a single instruction to cause multiple operations to be performed in parallel
+- mostly used to improve speed for applications that process image, sound, and video
+
+**The Importance of Abstractions in Computer Systems**
+- Ability to provide abstract represetnations at different levels to hide the complexity of the actual implementations
+- Example: instruction set architecture
+   - provides an abstraction of the actual processor hardware
+   - the abstraction allows machine-code programs to behave as if it were executed on a processor that performs just one instruction at a time, while the actual hardware is executing multiple instructions in parallel
+- OS abstractions
+   - files - I/O devices
+   - virtual memory - program memory
+   - processes - running a program
+   - virtual machine - abstraction of entire computer, including the operatin system, the processor, and the programs
