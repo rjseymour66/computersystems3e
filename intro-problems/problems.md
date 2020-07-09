@@ -14,4 +14,5 @@ speedup = 1.25
 
 1 / .4 + (.6 / x) = 
 
-To speed up the trip by 1.67, we must decrease the overall time to 15 hours. The parts outside of Montana still require 10 hours, so we must drive montana in 5 hours. That is 300km 
+Practice Problem 1.2  
+

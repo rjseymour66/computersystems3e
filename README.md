@@ -199,18 +199,19 @@ Remote hello.c example over telnet:
 **Amdahl's law**
 When we speed up one part of a system, the effect on the overall system performance depends on both how significant this part was and how much it sped up. To significantly speed up the entire system, we must improve the speed of a very large fraction of the overall system.
 
-T<sub>old</sub> = total time required to execute a system  
-x = amount of time of T<sub>old</sub> a part of the system requires to run  
-k = amount that the performance of x is improved  
-xT<sub>old</sub> = original performance time  
-(xT<sub>old</sub>)/k = new performance time  
+_T_<sub>old</sub> = total time required to execute a system  
+x = part of execution time that a part of the system requires
+k = improve performance of x by this amount
 
-Execution time equation:  
-T<sub>new</sub> = (1 - x)T<sub>old</sub> + (T<sub>old</sub>) / k  
-= T<sub>old</sub>[(1 - x) + x / k]
+Previous execution time:  
+x_T_<sub>old</sub>  
 
-So, the net speedup S = T<sub>old</sub> / T<sub>old</sub>T<sub>new</sub>:  
+New execution time:  
+_T_<sub>old</sub> / k  
 
+_T_<sub>new</sub> = (1 -x)_T_<sub>old</sub> + (x_T_<sub>old</sub>) / k
+
+So, the net speedup S = _T_<sub>old</sub> / T<sub>new</sub>:  
 S = 1 / [(1 - x) + x / k]  
 
 Example:
@@ -223,4 +224,25 @@ S = 1 / [(1 - .6) + .6 / 3] = 1 / 0.4 + 0.2 = 1.67
 
 So, the part that consumed 60% is sped up by 3, but the entire system is only sped up by 1.67.
 
-So, one part of the system was improved, but the net speedup is considerably less that the speedup for one part
+**Concurrency and Parallelism**  
+_Concurrency_ - system with mutliple, simultaneous activities
+_Parallelism_ - the use of concurrency to make the system run faster  
+
+Parallelism can be exploited at the following 3 levels of abstraction (highest-level to lowest):
+1. Thread-level concurrency
+   - Originally, concurrency was simulated by a single computer rapidly switching processes
+      - Called uniprocessor system
+      - Allows multiple users to interact with the same system at once (i.e. web server), or have multiple windows open doing things
+   - Multiprocessor - a system consisting of multiple processors all under the control of a single operating system kernel
+      - more common recently due to multi-core processors and hyperthreading
+      - multi-core processors have several CPUs (called cores) integrated onto a single integrated-circuit chip. 
+   - **Common architecture** - 4 CPU cores, each with its own L1 and L2 caches. L1 cache split in 2 (1 part for data, 1 part for recently fetched instructions)
+      - share higher level caches and the main memory interface
+   - _hyperthreading_ - also called simultaneous mutli-threading - allows a single CPU to execute multiple flows of control. 
+      - it is having multiple parts of some parts of the CPU and single copies of others
+      - decides which thread to execute on a cycle-by-cycle basis
+      - CPU takes better advantage of its processor resources
+   - Improve system performance
+      - Reduces the need to simulate concurrency when performing multiple tasks
+      - Can run a single application program faster, but only if that program is expressed in terms of multiple threads that can effectively execute in parallel. 
+2. Instruction-level parallelism
