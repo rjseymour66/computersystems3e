@@ -358,6 +358,6 @@ r becomes the least significant digit. Generate the remmaining digifits by repea
 Multiply each of the hexadecimal digits by the appropriate power of 16, according to its place using 0 index.
 
 For example, Ox7AF is:  
-7 * 16<sup>2</sup> + 10 * 16 + 15 = 
-7 * 256 + 10 * 16 + 15 =
+7 * 16<sup>2</sup> + 10 * 16 + 15 =  
+7 * 256 + 10 * 16 + 15 =  
 1,792 + 160 + 15 = 1,967
