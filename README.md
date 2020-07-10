@@ -325,12 +325,12 @@ How to read the following notes**
 |:------------|:---:|:----:|:----:|:----:|:----:|:----:|
 | Hexidecimal | 3   | C    | A    | D    | B    | 3    |
 
-Converting a nonnegative integer when value x is a power of 2, meaning x = 2<sup>n</sup>:
+### Converting a nonnegative integer when value x is a power of 2, meaning x = 2<sup>n</sup>:
 - write x in hexidecimal form by remembering that binary of x is 1 followed by n zeros.
    - For example, 2<sup>3</sup> = 8 = 1000 in binary (1 followed by three 0s)
    - 2<sup>5</sup> = 32 = 100000 in binary (1 followed by five 0s)
 
-Converting to hexidecimal
+### Converting to hexidecimal
 - write _n_ in the form _i_ + (4 * _j_), where 0 <= _i_ <= 3
    1. find the first number in the hex 
       - 1 if _i_ = 0
@@ -340,4 +340,24 @@ Converting to hexidecimal
    2. Add _j_ hexidecimal 0s after the first digit
       - For example, x = 2,048 = 2<sup>11</sup>.
       - n = 11, and 11 = 3 + (4 * 2). This gives us 0x800
-   
+
+### Converting from decimal to hexadecimal
+To convert x decimal to hex, divide by 16.  
+
+_x_ = _q_ * 16 + _r_  
+
+r becomes the least significant digit. Generate the remmaining digifits by repeating the process on q:
+
+314,156 = 19,634 * 16 + 12  C
+ 19,634 = 1,227 * 16 + 12   2
+  1,227 = 76 * 16 + 11      B
+     76 = 4 * 16 + 12       C
+      4 = 0 * 16 + 4        4
+
+## Converting from hexidecimal to decimal
+Multiply each of the hexadecimal digits by the appropriate power of 16, according to its place using 0 index.
+
+For example, Ox7AF is:  
+7 * 16<sup>2</sup> + 10 * 16 + 15 = 
+7 * 256 + 10 * 16 + 15 =
+1,792 + 160 + 15 = 1,967
