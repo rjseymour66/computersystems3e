@@ -354,6 +354,8 @@ r becomes the least significant digit. Generate the remmaining digifits by repea
      76 = 4 * 16 + 12       C  
       4 = 0 * 16 + 4        4  
 
+This is equal to **Ox4CB2C**.
+
 ## Converting from hexidecimal to decimal
 Multiply each of the hexadecimal digits by the appropriate power of 16, according to its place using 0 index.
 
