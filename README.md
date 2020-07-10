@@ -317,4 +317,5 @@ How to read the following notes**
 - Good trick is to memorize decimal equivalents of A (10), C (12), and F (15)
 
 | Hexidecimal | 1   | 7    | 3    | A    | 4    | C    |
+|:------------|:---:|:----:|:----:|:----:|:----:|:----:|
 | Binary      | 001 | 0111 | 0011 | 1010 | 0100 | 1100 |
