@@ -324,3 +324,20 @@ How to read the following notes**
 | Binary      | 11  | 1100 | 1010 | 1101 | 1011 | 0011 |
 |:------------|:---:|:----:|:----:|:----:|:----:|:----:|
 | Hexidecimal | 3   | C    | A    | D    | B    | 3    |
+
+Converting a nonnegative integer when value x is a power of 2, meaning x = 2<sup>n</sup>:
+- write x in hexidecimal form by remembering that binary of x is 1 followed by n zeros.
+   - For example, 2<sup>3</sup> = 8 = 1000 in binary (1 followed by three 0s)
+   - 2<sup>5</sup> = 32 = 100000 in binary (1 followed by five 0s)
+
+Converting to hexidecimal
+- write _n_ in the form _i_ + (4 * _j_), where 0 <= _i_ <= 3
+   1. find the first number in the hex 
+      - 1 if _i_ = 0
+      - 2 if _i_ = 1
+      - 4 if _i_ = 2
+      - 8 if _i_ = 3
+   2. Add _j_ hexidecimal 0s after the first digit
+      - For example, x = 2,048 = 2<sup>11</sup>.
+      - n = 11, and 11 = 3 + (4 * 2). This gives us 0x800
+   
