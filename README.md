@@ -86,7 +86,7 @@ High-level overview of what happens when you run hello-world.c:
 6. After code and data in hello object file is loaded into main memory, the processor executes the machine-language in the program's main routing/method.
    - Copy the bytes in the 'hello world\n' string from memory to register file, then to display device
 
-### 1.5 Caches Matter
+## 1.5 Caches Matter
 
 Lots of copying happens
 - The program is copied from disk to main memory, then copied to the processor, then copied to the display device.  
@@ -101,7 +101,7 @@ Cache memory
 - **L2 cache** - uses SRAM (standard access random memory) 100s of 1000s - Mils of bytes, connected to the processor by a special bus. The L2 is not as fast as accessing the L1 cache, but it is much faster than accessing the main memory.
 - Some newer systems even have an **L3 cache**
 
-### 1.6 Storage Devices Form a Hierarchy
+## 1.6 Storage Devices Form a Hierarchy
 Since computers spend most of their time copying data between memory, I/O devices, and CPU registers, storage is arranged in a hierarchy. Storage at one level serves as a cache for storage at the next lower level. The smaller the component, the faster and more expensive.  
 
 0. CPU Registers - hold words from retrieved from cache memory
@@ -111,7 +111,7 @@ Since computers spend most of their time copying data between memory, I/O device
 4. Main memory (DRAM) - holds disk blocks retrieved from local disk
 5. Local secondary storage - hold files retrieved from disks on remote network servers 
 
-### 1.7 The Operating System Manages the Hardware
+## 1.7 The Operating System Manages the Hardware
 The OS is the layer of software between the application programm and the hardware. Anytime the application wants to manipulate the hardware, it must go through the OS.  
 
 OS has 2 purposes:
@@ -143,7 +143,7 @@ The kernel
 - When an app requires action by the OS, it makes a _system call_ instruction and passes control to the kernel
    - The kernel performs the operation and returns back to the application
 
-#### Unix, Posix, and the Standard Unix Specification  
+### Unix, Posix, and the Standard Unix Specification  
 - Unix was created at Bell labs in 1969
 - Used heirarchical file system and user-level shell
 - Called Unix as a joke against Multics, the complex OS it replaced
@@ -152,13 +152,13 @@ The kernel
 - When vendors started adding incompatible features, the IEEE sponsored an effort to standardize Unix and created Posix
 - Most recent update to that is the Standard Unix Specification
 
-**Threads**
+**Threads**  
 A process that consists of multiple execution units that each run in the context of the process and share the same code and global data
 - Easier to share data between multiple threads than between multiple processes
 - Threads are typically more efficient than processes
 - Way to make programs run faster when multiple processors are available
 
-**Virtual Memory**
+**Virtual Memory**  
 Virtual memory is an abstraction that provides each process with the illusion that it has exclusive use of the main memory.
 - _virtual address space_ - each process has this uniform view of memory  
 - General idea is to store the contents of a process's virtual memory on disk and then use the main memory as a cache for the disk
@@ -180,7 +180,7 @@ A sequence of bytes.
    - Provides applications with a uniform view of all the varied I/O devices that might be contained in the system.
 - All input and output is performed by reading and writing files using _Unix I/O_ system calls.
 
-### 1.8 Systems Communicate with Other Systems Using Networks
+## 1.8 Systems Communicate with Other Systems Using Networks
 Outside networks can be seen as another I/O device. The internet is based on copying information over a network.  
 
 Remote hello.c example over telnet:
@@ -194,9 +194,9 @@ Remote hello.c example over telnet:
 7. Server sends the output across network to telnet client
 8. Client prints output string on local terminal
 
-### 1.9 Important themes
+## 1.9 Important themes
 
-**Amdahl's law**
+**Amdahl's law**  
 When we speed up one part of a system, the effect on the overall system performance depends on both how significant this part was and how much it sped up. To significantly speed up the entire system, we must improve the speed of a very large fraction of the overall system.
 
 _T_<sub>old</sub> = total time required to execute a system  
@@ -224,7 +224,7 @@ S = 1 / [(1 - .6) + .6 / 3] = 1 / 0.4 + 0.2 = 1.67
 
 So, the part that consumed 60% is sped up by 3, but the entire system is only sped up by 1.67.
 
-**Concurrency and Parallelism**  
+**Concurrency and Parallelism**    
 _Concurrency_ - system with mutliple, simultaneous activities  
 _Parallelism_ - the use of concurrency to make the system run faster  
 
@@ -279,3 +279,42 @@ Three important representations of numbers with binary
 3. _Floating-point_ - base-2 version of scientific notation for representing real numbers.
 
 - _overflow_ is when results of a computation are too large to be represented by the limited number of bits used to encode a number.
+- integers can encode a comparatively small range of values precisely
+- floating point arithmetic can encode a wide range of values, but only approximately
+
+Computers use several different binary representations to encode numeric values. Need to understand:
+- basic definitions of the encodings
+- range of representable numbers
+- their bit-level representations
+- the properties of the arithmetic operations  
+
+C and C++ are similar in their number representations. Java is different.
+
+How to read the following notes**
+1. A property as a principle is stated
+2. Illustrate the principle with examples and discussion
+3. For complex properties, there is a derivation (like a mathematical proof). You can skip these on the first reading if you don't understand.
+
+## 2.1 Information Storage
+- Computers use blocks of 8 bits (bytes) as the smmallest addressable unit of memory
+- machine-level program views memory as a large array of bytes called _virtual memory_.
+- Every byte of memory is ID'd by a unique number - the address
+- The set of all possible addresses is the _virtual space_
+   - virtual address space is just a conceptual image presented to the machine level program
+   - Actual implementation is a combination of dynamic random access memory (DRAM), flash memory, disk storage, special hardware, and operating system software
+   - These combine to provide the program with what it thinks is a monolithic byte array
+- compiler and run-time system partition this virtual memory space into more mmanageable units to store program objects (program data, instructions, and control information)
+   - Example: pointer in C is the virtual address of the first byte of some block of storage
+   - **Pointers in C** - mechanism for referencing elemments of data structures, including arrays. Has a value (location of the object) and a type (what kind of object).
+
+## 2.2 Hexadecimal Notation
+- A byte has 8 bits, ranging from 00000000<sub>2</sub> to 11111111<sub>2</sub>. That is 0<sub>10</sub> to 255<sub>10</sub>.
+- Bit patterns are written in Hexidecimal because binary is too much and decimal is too difficult to convert
+- Hex is 0 - 9 and A - F for 16 possible values
+- A single byte can range fromm 00<sub>16</sub> to FF<sub>16</sub>
+- Hex numbers start with **Ox** or **OX**. A - F could be upper or lowercase
+   - FA1D37B<sub>16</sub> = OxFA1D37B = Oxfa1d37b
+- Good trick is to memorize decimal equivalents of A (10), C (12), and F (15)
+
+| Hexidecimal | 1   | 7    | 3    | A    | 4    | C    |
+| Binary      | 001 | 0111 | 0011 | 1010 | 0100 | 1100 |
