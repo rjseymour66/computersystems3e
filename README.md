@@ -348,11 +348,11 @@ _x_ = _q_ * 16 + _r_
 
 r becomes the least significant digit. Generate the remmaining digifits by repeating the process on q:
 
-314,156 = 19,634 * 16 + 12  C
- 19,634 = 1,227 * 16 + 12   2
-  1,227 = 76 * 16 + 11      B
-     76 = 4 * 16 + 12       C
-      4 = 0 * 16 + 4        4
+314,156 = 19,634 * 16 + 12  C  
+ 19,634 = 1,227 * 16 + 12   2  
+  1,227 = 76 * 16 + 11      B  
+     76 = 4 * 16 + 12       C  
+      4 = 0 * 16 + 4        4  
 
 ## Converting from hexidecimal to decimal
 Multiply each of the hexadecimal digits by the appropriate power of 16, according to its place using 0 index.
