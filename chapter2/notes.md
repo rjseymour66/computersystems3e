@@ -115,3 +115,44 @@ For example, 0x7AF is:
    - long unsigned
    - long unsigned int
 
+## 2.1.3 Addressing and Byte Ordering
+
+- Program objects that span multiple bytes, we must establish: 
+   1. What the address of the object will be
+   2. How we order the bytes in memory
+- Multi-byte objects are stored connecting sequence of bytes. Address of the object is usually the smallest address used
+   - int x has address 0x100, then, on a 32-bit machine, the 4 bytes that it takes up is Ox100, Ox101, Ox102, Ox103  
+### Ordering bytes representing an object:  
+- _w_-bit integer with bit representation [xw-1, xw-2,...x1, x0]
+- xw-1 is the most significant bit and x0 is the least
+- if w is a multiple of 8, you can group these bits as bytes with the MSB having bits [xw-1, xw-2,...,xw-8] and the LSB having bits [x7, x6, ..., x0]. Any other bytes use the bits in the middle.
+- machines store them differently:  
+**Little endian** - when the machine stores the bits starting with the LSB  
+   - Intel compatible machines use little-endian mode
+**Big endian** - when the machine stores the bits starting with the MSB
+   - IBM and Oracle often use big-endian
+
+Some machines can run in _bi-endian_ mode, which means both of them, but it is usually fixed once a particular OS is chosen.
+
+### Example
+int x is at address 0x100 and has a hex value of 0x1234567 (this hex value is a word, and 0xMSB > LSB)
+
+Little endian storage:  
+| 0x100 | 0x101 | 0x102 | 0x103 | 
+|:-----:|:-----:|:-----:|:-----:|
+| 67    | 45    | 23    | 01    |
+
+Big endian storage:  
+| 0x100 | 0x101 | 0x102 | 0x103 | 
+|:-----:|:-----:|:-----:|:-----:|
+| 01    | 23    | 45    | 67    |
+
+When to worry about byte ordering
+1. When binary data is communicated over a network between different machines
+   - may cause issues if sending from little-endian to big-endian, or vice versa
+   - you must use certain established conventions to combat this
+2. When looking at the byte sequences representing integer data when inspecting machine level programs  
+   - Example: 4004d3: 01 05 43 0b 20 00     add    %eax, 0x200b43(%rip)  
+   - this line states that the hex byte sequence (01 05 43 0b 20 00) is a bytee-level representation of an instruction that adds a word of data to the value stored at an address computed by adding 0x200b43 to the current value of the program countre, the address of the next instruction to be executed. 
+   - The natuaral way to write a byte sequence is to have the lowest-numbered byte on the left and the highest on the right. This is contrary to how we commonly write numbers
+3. When programs are written using casting to allow objecst to be referenced according to a different data typ 
