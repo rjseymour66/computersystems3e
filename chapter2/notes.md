@@ -185,5 +185,29 @@ int sum(int x, int y) {
 ```
 - This is different per machine type and OS, even if they use the same processor
 - Binary code is not portable across machines or OSs
-### Big idea
->The machine does not know anything about the original source program. It knows only how to read the sequence of bytes that make up the program.
+### The machine does not know anything about the original source program. It knows only how to read the sequence of bytes that make up the program.
+
+### Unicode
+>ASCII doesn't work for all languages, such as Chinese or Greek. It uses 32-bit representations of characters, but it has alternate codings to accomodate characters that require 1 or 2 bytes.
+
+## 2.1.6 Intro to Boolean Algebra
+
+| - |   |
+|:-:|:-:|
+| 0 | 1 |
+| 1 | 0 |
+
+| & | 0 | 1 |
+|:-:|:-:|:-:|
+| 0 | 0 | 0 |
+| 1 | 0 | 1 |
+
+|\| | 0 | 1 |
+|:-:|:-:|:-:|
+| 0 | 0 | 1 |
+| 1 | 1 | 1 |
+
+| ~ | 0 | 1 |
+|:-:|:-:|:-:|
+| 0 | 0 | 1 |
+| 1 | 1 | 0 |
