@@ -128,9 +128,9 @@ For example, 0x7AF is:
 - if w is a multiple of 8, you can group these bits as bytes with the MSB having bits [xw-1, xw-2,...,xw-8] and the LSB having bits [x7, x6, ..., x0]. Any other bytes use the bits in the middle.
 - machines store them differently:  
 **Little endian** - when the machine stores the bits starting with the LSB  
-   - Intel compatible machines use little-endian mode
+   - Intel compatible machines use little-endian mode  
 **Big endian** - when the machine stores the bits starting with the MSB
-   - IBM and Oracle often use big-endian
+   - IBM and Oracle often use big-endian  
 
 Some machines can run in _bi-endian_ mode, which means both of them, but it is usually fixed once a particular OS is chosen.
 
@@ -155,4 +155,13 @@ When to worry about byte ordering
    - Example: 4004d3: 01 05 43 0b 20 00     add    %eax, 0x200b43(%rip)  
    - this line states that the hex byte sequence (01 05 43 0b 20 00) is a bytee-level representation of an instruction that adds a word of data to the value stored at an address computed by adding 0x200b43 to the current value of the program countre, the address of the next instruction to be executed. 
    - The natuaral way to write a byte sequence is to have the lowest-numbered byte on the left and the highest on the right. This is contrary to how we commonly write numbers
-3. When programs are written using casting to allow objecst to be referenced according to a different data typ 
+3. When programs are written using casting to allow objecst to be referenced according to a different data type
+
+```c
+int:	 39 30 00 00
+float:	 00 e4 40 46
+ptr:	 38 28 53 ec fe 7f 00 00
+```
+
+In this example, when converted to binary, the int and float hex values have overlapping values. See section on floating point values when I write notes for it.
+

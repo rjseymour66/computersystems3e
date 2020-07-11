@@ -1,6 +1,10 @@
 #include <stdio.h>
 
 typedef unsigned char *byte_pointer;
+/* This is a pointer to an unsigned char.
+typedef is a way to give a name to a data type. 
+Like declaring a variable, but uses the type name instead of a var name.*/
+
 
 void test_show_bytes(int val);
 void show_bytes(byte_pointer start, size_t len);
@@ -31,15 +35,18 @@ void show_bytes(byte_pointer start, size_t len)
 
 void show_int(int x)
 {
-   show_bytes((byte_pointer)&x, sizeof(int));
-}
+   printf("int:\t");
+   show_bytes((byte_pointer)&x, sizeof(int));   /* '&x' creates a pointer to the location */
+}                                               /*  holding the object indicated by variable x */
 
 void show_float(float x)
 {
-   show_bytes((byte_pointer)&x, sizeof(float));
-}
+   printf("float:\t");  
+   show_bytes((byte_pointer)&x, sizeof(float)); /* sizeof(T) returns the number of bytees required to store */
+}                                               /* an object of type T */
 
 void show_pointer(void *x)
 {
-   show_bytes((byte_pointer)&x, sizeof(void *));
+   printf("ptr:\t");
+   show_bytes((byte_pointer)&x, sizeof(void *)); /* void * is a special kind of pointer with no associated type info */
 }

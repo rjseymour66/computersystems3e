@@ -1,4 +1,4 @@
-## 2.1 Practice Problems
+## 2.1 Practice Problem
 
 1. Ox39A7F8 > binary   
 0011 1001 1010 0111 1111 1000
@@ -9,7 +9,7 @@
 4. binary 0010 0110 1110 0111 1011 0101 > hex  
 Ox26D7B5
 
-## 2.2 Practice Problems
+## 2.2 Practice Problem
 
 | n  | 2<sup>n</sup> (decimal) |  2<sup>n</sup> (hexadecimal) |
 |:--:|:-----------------------:|:----------------------------:|
@@ -22,7 +22,7 @@ Ox26D7B5
 | 7  |   128                   |   0x80                       |        
 
 
-## 2.3 Practice Problems
+## 2.3 Practice Problem
 
 | Decimal  | Binary            |  Hexadecimal                 |
 |:--------:|:-----------------:|:----------------------------:|
@@ -38,9 +38,50 @@ Ox26D7B5
 |  231     |   1110 0111       |        0xE7                  | 
 
 
-## 2.4 Practice Problems
+## 2.4 Practice Problem
 
 1. 0x503c + 0x8 = 0x4FFC
 2. 0x503c - 0x40 = 0x4F9C
 3. 0x503c + 64 = 0x507c
 4. 0x50ea - 0x503c = 0xAE
+
+
+## 2.5 Practice Problem
+
+```c
+int val = 0x87 65 43 21;
+byte_pointer valp = (byte_pointer) &val; /* casts this as a pointer */
+show_bytes(valp, 1); /* 1 */
+show_bytes(valp, 2); /* 2 */
+show_bytes(valp, 3); /* 3 */
+```
+
+1. Little endian: 21 Big endian: 87  
+2. Little endian: 21 43 Big endian: 87 65   
+3. Little endian: 21 43 65 Big endian: 87 65 43 
+
+## 2.6 Practice Problem
+
+int 3510593 = 0x00359141  
+float 3510593.0 = 0x4a564504
+
+1. Answer 1
+| Hexidecimal | Decimal          | Binary                           |
+|:-----------:|:----------------:|:-------------------------------------------:|
+| 0x00359141  |      3,510,593   |             11 0101 1001 0001 0100 0001     |
+| 0x4a564504  |  1,247,167,748   |  100 1010 0101 0110 0100 0101 0000 0100     |
+
+|   0  |   0  |   3  |   5  |   9  |   1  |   4  |   1  |
+|------|------|------|------|------|------|------|------|
+| 0000 | 0000 | 0011 | 0101 | 1001 | 0001 | 0100 | 0001 |
+
+
+|   4  |   A  |   5  |   6  |   4  |   5  |   0  |   4  |
+|------|------|------|------|------|------|------|------|
+| 0100 | 1010 | 0101 | 0110 | 0100 | 0101 | 0000 | 0100 |
+
+2. Answer 2
+1**101011001000101000001**   
+10010100**101011001000101000001**00  
+
+3. The MSB of the first number does not match, the 2 LSBs of the second number do not match
