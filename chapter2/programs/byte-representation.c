@@ -13,7 +13,7 @@ void show_float(float x);
 void show_pointer(void *x);
 
 int main(void) {
-   test_show_bytes(12345);
+   test_show_bytes(12345, 6);
 }
 
 void test_show_bytes(int val) {

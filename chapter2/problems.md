@@ -85,3 +85,13 @@ float 3510593.0 = 0x4a564504
 10010100**101011001000101000001**00  
 
 3. The MSB of the first number does not match, the 2 LSBs of the second number do not match
+
+## 2.7 Pratice problem
+1. What would print?
+```c
+const char *s = "abcdef";
+show_bytes((byte_pointer), s, strlen(s));
+```
+Printed:  
+`61 62 63 64 65 66`  
+strlen does not count the terminating null character `00`, so it is not printed

@@ -165,3 +165,25 @@ ptr:	 38 28 53 ec fe 7f 00 00
 
 In this example, when converted to binary, the int and float hex values have overlapping values. See section on floating point values when I write notes for it.
 
+## 2.1.4 Representing Strings
+Strings are encoded by an array of characters terminated by the null (0) character
+- There is a standard encoding used, most often ASCII
+- Example: "12345" in the show_bytes program returns the following because `00` terminates the string:  
+```c
+31 32 33 34 35 00
+```
+- As in the example above, any number _x_ in ASCII is 0x3_x_
+- The terminating byte has the value 0x00, so text is more portable from machine to machine
+
+This code generates the following machine code on a Linux 64-bit machine:
+```c
+int sum(int x, int y) {
+   return x + y;
+}
+
+55 48 89 e5 89 7d fc 89 75 f8 03 45 fc c9 c3
+```
+- This is different per machine type and OS, even if they use the same processor
+- Binary code is not portable across machines or OSs
+### Big idea
+<aside>The machine does not know anything about the original source program. It knows only how to read the sequence of bytes that make up the program.</aside>
