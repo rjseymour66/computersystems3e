@@ -186,4 +186,4 @@ int sum(int x, int y) {
 - This is different per machine type and OS, even if they use the same processor
 - Binary code is not portable across machines or OSs
 ### Big idea
-<aside>The machine does not know anything about the original source program. It knows only how to read the sequence of bytes that make up the program.</aside>
+>The machine does not know anything about the original source program. It knows only how to read the sequence of bytes that make up the program.
