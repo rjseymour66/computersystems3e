@@ -192,22 +192,40 @@ int sum(int x, int y) {
 
 ## 2.1.6 Intro to Boolean Algebra
 
+OPPOSITE
 | - |   |
 |:-:|:-:|
-| 0 | 1 |
 | 1 | 0 |
+| 0 | 1 |
 
+AND
 | & | 0 | 1 |
 |:-:|:-:|:-:|
 | 0 | 0 | 0 |
 | 1 | 0 | 1 |
 
+OR
 |\| | 0 | 1 |
 |:-:|:-:|:-:|
 | 0 | 0 | 1 |
 | 1 | 1 | 1 |
 
+NOT
 | ~ | 0 | 1 |
 |:-:|:-:|:-:|
 | 0 | 0 | 1 |
 | 1 | 1 | 0 |
+
+- Claude Shannon linked Boolean algebra with digital logic in 1937.
+- can use boolean algebra to operate on _bit vectors_
+   - _bit vectors_ - strings of zeros and ones of some fixed length _w_  
+
+Examples: 
+
+```c
+  0110      0110       0110
+& 1100    | 1100     ~ 1100     - 1100
+  ----      ----       ----       ----
+  0100      1110       1010       0011
+  ```
+  
