@@ -312,8 +312,8 @@ How to read the following notes**
 - Bit patterns are written in Hexidecimal because binary is too much and decimal is too difficult to convert
 - Hex is 0 - 9 and A - F for 16 possible values
 - A single byte can range fromm 00<sub>16</sub> to FF<sub>16</sub>
-- Hex numbers start with **Ox** or **OX**. A - F could be upper or lowercase
-   - FA1D37B<sub>16</sub> = OxFA1D37B = Oxfa1d37b
+- Hex numbers start with **0x** or **0X**. A - F could be upper or lowercase
+   - FA1D37B<sub>16</sub> = 0xFA1D37B = 0xfa1d37b
 - Good trick is to memorize decimal equivalents of A (10), C (12), and F (15)
 
 | Hexidecimal | 1   | 7    | 3    | A    | 4    | C    |
@@ -354,12 +354,12 @@ r becomes the least significant digit. Generate the remmaining digifits by repea
      76 = 4 * 16 + 12       C  
       4 = 0 * 16 + 4        4  
 
-This is equal to **Ox4CB2C**.
+This is equal to **0x4CB2C**.
 
 ## Converting from hexidecimal to decimal
 Multiply each of the hexadecimal digits by the appropriate power of 16, according to its place using 0 index.
 
-For example, Ox7AF is:  
+For example, 0x7AF is:  
 7 * 16<sup>2</sup> + 10 * 16 + 15 =  
 7 * 256 + 10 * 16 + 15 =  
 1,792 + 160 + 15 = 1,967
