@@ -95,3 +95,24 @@ show_bytes((byte_pointer), s, strlen(s));
 Printed:  
 `61 62 63 64 65 66`  
 strlen does not count the terminating null character `00`, so it is not printed
+
+### Web Aside DATA:BOOL
+>**Boolean ring** used in boolean arithmetic for ^(XOR) and ~(NOT)
+>- Interesting property is the additive inverse, where _x + -x = 0_.
+>- with ^, ^ is the addition operation, but each element is its own additive inverse
+>For example:
+>_a ^ a = 0_ for any value a
+>_0 ^ 0 = 1 ^ 1 = 0_
+>This works when we rearrange/combine terms: _(a ^ b) ^ a = b_
+
+## 2.8 Practice Problem
+
+| Operation | Result     |
+|:---------:|:----------:|
+| a         | [01101001] |
+| b         | [01010101] |
+| ~a        | [10010110] |
+| ~b        | [10101010] |
+| a&b       | [01000001] |
+| a\|b      | [01111101] |
+| a^b       | [00111100] |
