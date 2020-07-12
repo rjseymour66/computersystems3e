@@ -300,3 +300,15 @@ This means `&&`, `||`, and `!`, and they treat any nonzero arg as `true`, and 0 
 
 
 ## 2.1.9 Shift Operations in C
+Shift bit patterns to the lef and to the right.  
+### Left shift
+- x << k turns [x<sub>w-1</sub>, x<sub>w-2</sub>,..., x<sub>0</sub>] into [x<sub>w-k-1</sub>, x<sub>w-k-2</sub>,..., x<sub>0</sub>, 0...,0].
+   - x is shifted k bits to the left (removing k significant bits), and adding k number of 0s at the end. The shift amount must be a value between 0 and w-1.
+### Right shift
+2 kinds of right shift:  
+**Logical** - shift to the right k spaces and fill the left end with k zeros. Ex: [0,...,0,x<sub>w-1</sub>, x<sub>w-2</sub>,..., x<sub>k</sub>]  
+**Arithmetic** - Useful for operating on signed integers. Shift to the right k spaces and fill the left with k repetitions of the most significant bit. Ex: [x<sub>w-1</sub>,..., x<sub>w-1</sub>, x<sub>w-2</sub>,..., x<sub>k</sub>]   
+- C standards do not explicitly say whether to use logical or arithmetic right shifts, and different uses may cause portability problems. 
+   - It is almost de facto that you use arithmetic for signed integer right shifts. For unsigned, use logical.
+   - Java uses x >> k for arithmetic, x >>> k for logical.
+

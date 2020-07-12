@@ -260,14 +260,24 @@ int bool_xor(int x, int y) {
 x = 0x66    0110 0110
 y = 0x39    0011 1001
 ```
-
+Perform the bitwise per bit, and the other per byte. See the last row for bitwise example.
 | Expression | Value | Expression   | Value |
 |:----------:|:-----:|:------------:|:-----:|
 | x & y      |  0x20 |   x && y     | 0x01  |
 | x \| y     |  0x7f |   x \|\| y   | 0x01  |
 | ~x \| ~y   |  0xdf |  !x \|\| !y  | 0x00  |
-|  x & !y    |  0x46 |   x && ~y    | 0x00  |
+|  x & !y    |  0x00 |   x && ~y    | 0x01  |
 
 ## 2.15 Practice Problem
 Using only bit level and logical operations, write a C expression that is equivalent to `x == y` (returns 1 when x and y are equal and 0 otherwise).  
 `!(x ^ y)`
+
+## 2.16 Practice Problem
+
+| x     |    x       | x << 3     |   x << 3 | Logical x >> 2   |  Logical x >> 2 | Arithmetic x >> 2 | Arithmetic x >> 2 |
+|:------|:-----------|:-----------|----------|:-----------------|:----------------|:------------------|:------------------|
+|**Hex**| **Binary** | **Binary** | **Hex**  | **Binary**       | **Hex**         | **Binary**        |   **Hex**         |
+| 0xC3  | 1100 0011  |
+| 0x75  | 0111 0101  |
+| 0x87  | 1000 0111  |
+| 0x66  | 0110 0110  |
