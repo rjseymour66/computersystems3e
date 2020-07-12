@@ -311,4 +311,13 @@ Shift bit patterns to the lef and to the right.
 - C standards do not explicitly say whether to use logical or arithmetic right shifts, and different uses may cause portability problems. 
    - It is almost de facto that you use arithmetic for signed integer right shifts. For unsigned, use logical.
    - Java uses x >> k for arithmetic, x >>> k for logical.
+- If you are shifting by a value where k >= w, most machines compute it as k mod w.
+   - So, if you try to shift a 32-bit value like 0xFEDCBA98 by << 32, >> 36, or >> 40, then it shifts 0, 4, and 8 respectively.
+- Addition and subtraction have higher order of precedence than shifts. For example, 1 << 2 + 3 << 4 = 1 << (2 + 3) << 4
 
+## 2.2 Integer Representations
+There are 2 different ways that bits can encode integers:  
+1. nonnegative  
+2. negative, zero, and positive integers
+
+## 2.2.1 Integral Data Types
