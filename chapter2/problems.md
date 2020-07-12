@@ -65,7 +65,7 @@ show_bytes(valp, 3); /* 3 */
 int 3510593 = 0x00359141  
 float 3510593.0 = 0x4a564504
 
-1. Answer 1
+1. Answer 1  
 | Hexidecimal | Decimal          | Binary                           |
 |:-----------:|:----------------:|:-------------------------------------------:|
 | 0x00359141  |      3,510,593   |             11 0101 1001 0001 0100 0001     |
@@ -120,3 +120,154 @@ strlen does not count the terminating null character `00`, so it is not printed
 
 ## 2.9 Practice Problem
 
+1. Black
+2. Yellow
+3. Magenta
+4. Red
+5. Cyan
+6. Green
+7. Blue
+8. Black
+
+```c
+Blue | Green
+
+   001
+OR 010
+   ---
+   011
+
+Yellow & Cyan
+
+  110
+& 011
+  ---
+  010
+
+Red ~ Magenta
+
+  100
+^ 101
+  ---
+  001
+```
+
+## 2.10 Practice Problem
+
+```c
+void inplace_swap(int *x, int *y) {
+   *y = *x ^ *y;   /* Step 1 */
+   *x = *x ^ *y;   /* Step 2 */
+   *y = *x ^ *y;   /* Step 3 */
+}
+```
+| Step       | *x                                      | *y                                     |
+|:-----------|:---------------------------------------:|:--------------------------------------:|
+| Initially  | a                                       | b                                      |
+| Step 1     | a                                       | a ^ b                                  |
+| Step 2     | a ^ (a ^ b) = (a ^ a) ^ b = 0 ^ b = b   | a ^ b                                  |
+| Step 3     | b                                       | b ^ (a ^ b) = (b ^ b) ^ a = 0 ^ a = a  | 
+
+
+## 2.11 Practice Problem
+
+```c
+void reverse_array(int a[], int cnt) {
+   int first, last;
+   for (first = 0, last = cnt -1; first <= last; first++, last--)
+      inplace_swap(&a[first], &a[last]);
+}
+```
+1. *x = 3, *y = 0
+2. Because the first and last value are equal in the last iteration
+3. Put an if(first == last) {a[last | first]} clause? NOPE - change **first < last** to reverse_array:  
+```c
+void reverse_array(int a[], int cnt) {
+   int first, last;
+   for (first = 0, last = cnt -1; **first < last**; first++, last--)
+      inplace_swap(&a[first], &a[last]);
+}
+```
+
+## 2.12 Practice Problem
+```c
+A. Return the LSB of x with all other bits set to 0.
+
+x & 0xFF;
+
+0x87654321
+```
+| 8 byte index  | 7 | 6 | 5 | 4| 3 | 2 | 1 | 0 |   
+|:--------------|
+| Hex 0x        | 8         | 7         | 6         | 5         | 4         | 3         | 2         | 1         |
+| Original      | 0000 1000 | 0000 0111 | 0000 0110 | 0000 0101 | 0000 0100 | 0000 0011 | 0000 0010 | 0000 0001 | 
+| Mask (& 0xFF) | 0000 0000 | 0000 0000 | 0000 0000 | 0000 0000 | 0000 0000 | 0000 0000 | 1111 1111 | 1111 1111 | 
+| Returns       | 0000 0000 | 0000 0000 | 0000 0000 | 0000 0000 | 0000 0000 | 0000 0000 | 0000 0010 | 0000 0001 |
+
+
+```c
+B. All but the LSB of x complemented, with the LSB changed.
+x ^ ~0xFF;
+
+0x87654321
+```
+
+| 8 byte index  | 7 | 6 | 5 | 4| 3 | 2 | 1 | 0 |   
+|:--------------|
+| Hex 0x        | 8         | 7         | 6         | 5         | 4         | 3         | 2         | 1         |
+| Original      | 0000 1000 | 0000 0111 | 0000 0110 | 0000 0101 | 0000 0100 | 0000 0011 | 0000 0010 | 0000 0001 |  
+| Mask (^ ~0xFF)| 1111 1111 | 1111 1111 | 1111 1111 | 1111 1111 | 1111 1111 | 1111 1111 | 0000 0000 | 0000 0000 |
+| Returns       | 1111 0111 | 1111 1010 | 1111 1001 | 1111 1010 | 1111 1011 | 1111 1100 | 0000 0010 | 0000 0001 |  
+
+This returns 0x789ABC21
+
+```c
+C. x | 0xFF;
+
+0x87654321
+```
+| 8 byte index  | 7 | 6 | 5 | 4| 3 | 2 | 1 | 0 |   
+|:--------------|
+| Hex 0x        | 8         | 7         | 6         | 5         | 4         | 3         | 2         | 1         |
+| Original      | 0000 1000 | 0000 0111 | 0000 0110 | 0000 0101 | 0000 0100 | 0000 0011 | 0000 0010 | 0000 0001 | 
+| Mask (\| 0xFF)| 0000 0000 | 0000 0000 | 0000 0000 | 0000 0000 | 0000 0000 | 0000 0000 | 1111 1111 | 1111 1111 |
+| Returns       | 0000 1111 | 0000 0111 | 0000 0110 | 0000 0101 | 0000 0100 | 0000 0000 | 1111 1111 | 1111 1111 |
+
+
+## 2.13 Practice Problem
+
+```c
+/* Declarations of functions implementing operations bis (bit set) and bic (bit clear) */
+int bis(int x, int m);
+int bic(int x, int m);
+
+/* Compute x|y using only calls to functions bis and bic */
+int bool_or(int x, int y) {  
+   int result = bis(x, y);
+   return result;
+}
+
+/* Compute x^y using only calls to functions bis and bic */
+int bool_xor(int x, int y) {
+   int result = bis(bic(x,y), bic(x,y));
+   return result;
+}
+``` 
+
+## 2.14 Practice Problem
+
+```c
+x = 0x66    0110 0110
+y = 0x39    0011 1001
+```
+
+| Expression | Value | Expression   | Value |
+|:----------:|:-----:|:------------:|:-----:|
+| x & y      |  0x20 |   x && y     | 0x01  |
+| x \| y     |  0x7f |   x \|\| y   | 0x01  |
+| ~x \| ~y   |  0xdf |  !x \|\| !y  | 0x00  |
+|  x & !y    |  0x46 |   x && ~y    | 0x00  |
+
+## 2.15 Practice Problem
+Using only bit level and logical operations, write a C expression that is equivalent to `x == y` (returns 1 when x and y are equal and 0 otherwise).  
+`!(x ^ y)`

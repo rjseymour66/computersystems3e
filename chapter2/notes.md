@@ -192,6 +192,13 @@ int sum(int x, int y) {
 
 ## 2.1.6 Intro to Boolean Algebra
 
+| Symbol | Meaning |
+|:------:|:-------:|
+| \|     | OR      |
+|  &     | AND     |
+|  ~     | NOT     |
+|  ^     | XOR     |
+
 OPPOSITE
 | - |   |
 |:-:|:-:|
@@ -229,9 +236,6 @@ Examples:
   0100      1110       1010       0011
   ```
 
-∩ ∉
-
-
 - can use bit vectors to represent finite sets  
 Example: set union and intersection:  
 A = [01101001] = [0,3,5,6]  
@@ -247,13 +251,52 @@ A ∩ B = [01000001] = [0,6]
 A and B represented in bit vectors:  
 
 | index |7|6|5|4|3|2|1|0|
-|-|-|-|-|-|-|-|-|-|
+|:-|-|-|-|-|-|-|-|-|
 | A Bit representation|0|1|1|0|1|0|0|1|
 
 | index |7|6|5|4|3|2|1|0|
-|-|-|-|-|-|-|-|-|-|
+|:-|-|-|-|-|-|-|-|-|
 | B Bit representation|0|1|0|1|0|1|0|1|
 
 | index |7|6|5|4|3|2|1|0|
-|-|-|-|-|-|-|-|-|-|
+|:-|-|-|-|-|-|-|-|-|
 | A ∩ B Bit representation|0|1|0|0|0|0|0|1|
+
+## 2.1.7 Bit-Level Operations in C
+
+The C language uses & | ^ ~ characters for operations. The best way to convert from a C expression to a hex result is to convert to binary, perform the operation, then convert back to hex.
+| C expression | Binary expression         | Binary result | Hexadecimal result |
+|:-------------|:--------------------------|:--------------|:-------------------|
+| ~0x41        | ~[0100 0001]              | [1011 1110]   | 0xBE               |
+| ~0x00        | ~[0000 0000]              | [1111 1111]   | 0xFF               |
+| 0x69 & 0x55  | [0110 1001] & [0101 0101] | [0100 0001]   | 0x41               |
+| 0x69 | 0x55  | [0110 1001] & [0101 0101] | [0111 1101]   | 0x7D               |
+
+### Masking
+A mask is a bit pattern that indicates a selected set of bits within a word. For example:  
+
+mask: 0xFF means the low-order byte of a word (1111 1111)  
+If you perform a bit-level operation on bit vector x using 0xFF as a mask, you get the least significant byte of x, and all the other bytes are set to 0:  
+```c
+x =       0x89ABCDEF
+mask =    0xFF
+          ----------
+result =  0x000000EF
+```
+
+## 2.1.8 Logical Operations in C
+This means `&&`, `||`, and `!`, and they treat any nonzero arg as `true`, and 0 as `false`.  
+- If the result of the expression can be determined by evaluating the first argument, then the second argument is not evaluated.  
+- Example: `a && 5/a` never allows division by 0 because it returns 0 if `a = 0`
+- Example: `p && *p++` never allows the dereferencing of a null pointer because if `p` exists and there is a value for p (`*p`), you can't change it 
+
+| Expression    | Result |
+|:-------------:|:------:|
+| !0x41         | 0x00   |
+| !0x00         | 0x01   |
+| !!0x41        | 0x01   |
+| 0x69 && 0x55  | 0x01   |
+| 0x69 || 0x55  | 0x01   |
+
+
+## 2.1.9 Shift Operations in C
