@@ -116,3 +116,7 @@ strlen does not count the terminating null character `00`, so it is not printed
 | a&b       | [01000001] |
 | a\|b      | [01111101] |
 | a^b       | [00111100] |
+
+
+## 2.9 Practice Problem
+

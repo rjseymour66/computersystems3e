@@ -228,4 +228,32 @@ Examples:
   ----      ----       ----       ----
   0100      1110       1010       0011
   ```
-  
+
+∩ ∉
+
+
+- can use bit vectors to represent finite sets  
+Example: set union and intersection:  
+A = [01101001] = [0,3,5,6]  
+B = [01010101] = [0,2,4,6]
+```c
+    01101001
+AND 01010101
+    --------
+    01000001
+```
+A ∩ B = [01000001] = [0,6]
+
+A and B represented in bit vectors:  
+
+| index |7|6|5|4|3|2|1|0|
+|-|-|-|-|-|-|-|-|-|
+| A Bit representation|0|1|1|0|1|0|0|1|
+
+| index |7|6|5|4|3|2|1|0|
+|-|-|-|-|-|-|-|-|-|
+| B Bit representation|0|1|0|1|0|1|0|1|
+
+| index |7|6|5|4|3|2|1|0|
+|-|-|-|-|-|-|-|-|-|
+| A ∩ B Bit representation|0|1|0|0|0|0|0|1|
