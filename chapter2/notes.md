@@ -291,12 +291,12 @@ This means `&&`, `||`, and `!`, and they treat any nonzero arg as `true`, and 0 
 - Example: `p && *p++` never allows the dereferencing of a null pointer because if `p` exists and there is a value for p (`*p`), you can't change it 
 
 | Expression    | Result |
-|:-------------:|:------:|
+|:--------------|:------:|
 | !0x41         | 0x00   |
 | !0x00         | 0x01   |
 | !!0x41        | 0x01   |
 | 0x69 && 0x55  | 0x01   |
-| 0x69 || 0x55  | 0x01   |
+| 0x69 \|\| 0x55  | 0x01   |
 
 
 ## 2.1.9 Shift Operations in C
