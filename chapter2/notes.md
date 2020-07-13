@@ -321,3 +321,20 @@ There are 2 different ways that bits can encode integers:
 2. negative, zero, and positive integers
 
 ## 2.2.1 Integral Data Types
+Integral data types are ones that represent finite ranges of integers. 
+- Have typical range of values for 32 and 64 bit programs
+   - For example, long is 4 bits on 32 bit machine, 8 bits on 64 bit
+- declare as `char`, `short`, `long`, `unsigned`, or `negative` (the default)
+   - There is a symmetry in the positive and negative. For example, `short` has a minimum of -32,767 and a max of 32,767
+
+## 2.2.2 Unsigned Encodings
+- B2U is a function that means binary to unsigned
+- _B2U<sub>w</sub>_(x) - there should be an --> over the x. w = the number of bits in the number.  
+### Examples
+_B2U<sub>w</sub>_([0101]) = 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup>  
+_B2U<sub>w</sub>_([1111]) = 1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup>   
+
+The range of values represented by w bits:
+- The least amount is [00...0]
+- The greatest amount is [11...1]
+- _UMAX<sub>w</sub>_ = \sum_{i=0}^w-1 2_i
