@@ -356,9 +356,10 @@ Every number between 0 and 2<sup>w</sup> - 1 has a unique encoding as a w-bit va
 - There is only 1 representation of the number 11 in 4-bit unsigned encoding: `1011`
 
 ## 2.2.3 Two's Complement encodings
-This is a way to represent negative values
+This is a way to represent negative values.
 - The MSB is interpreted to have negative weight
 - Expressed as a function _B2T<sub>w</sub>_
+- The name comes fromm the fact that for nonnegative x, we compute a w-bit representation of -x as 2<sup>w</sup> - x (a single two)
 
 ### Principle
 For vector x = [x<sub>w-1</sub>, x<sub>w-2</sub>, ..., x<sub>0</sub>]:
@@ -382,3 +383,30 @@ The range of values represented by w bits:
 ### Principle: Uniqueness of twos-complement encoding
 Function _B2T<sub>w</sub>_ is a bijection. 
 - _T2B<sub>w</sub>_ (twos complement to binary) is the inverse of _B2T<sub>w</sub>_
+- Two's complement is assymetric: | _TMmin_ = | _TMax_ | + 1.
+   - For example, a word with 8 bits _TMax_ is 0x7F (127), while its _TMmin_ is 0x80 (-128)
+   - This occurs because the bit patterns using 1 represent negative numbers, while 0s represetn nonnegative, so 0s can represent one less positive number
+   - When twos complement is converted to unsigned, all of the patterns that represent negative numbers become positive, so they are 1 value less than in TC
+
+In some circumstances, you must have fixed-size integers (using internet protocols that have specs)
+- In the C stdint.h package, you can use the intN_t and unintN_t to specify how many bits it uses **TO INCREASE PORTABILITY**
+- For example, use `unit16_t` for an unsigned 16-bit 
+- Formatted printing uses macros to expand into format strings to fix how it is compiled
+
+```c
+printf("x = %" PRId32 ", y = %" PRIu64 "\n", x, y);
+ 
+ ...
+
+ printf("x = %d, y = %1u\n", x, y);
+ ```
+- C file `<limits.h>` defines a set of constants that delimits the ranges of the different integer data types for the particular machine where the compiler is running
+   - defines constants INT_MAX, INT_MIN, and UINT_MAX for the range of signed and unsigned ints
+
+```c
+short x = 12345;
+short mx = -x;
+
+show_bytes((byte_pointer) &x, sizeof(short));
+show_bytes((byte_pointer) &mx, sizeof(short));
+```

@@ -42,7 +42,7 @@ void show_int(int x)
 void show_float(float x)
 {
    printf("float:\t");  
-   show_bytes((byte_pointer)&x, sizeof(float)); /* sizeof(T) returns the number of bytees required to store */
+   show_bytes((byte_pointer)&x, sizeof(float)); /* sizeof(T) returns the number of bytes required to store */
 }                                               /* an object of type T */
 
 void show_pointer(void *x)

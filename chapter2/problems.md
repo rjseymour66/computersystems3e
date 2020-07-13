@@ -293,3 +293,18 @@ Using only bit level and logical operations, write a C expression that is equiva
 | 0x8             | [1000]     | 2<sup>3</sup> = 8                              | -2<sup>3</sup> = -8                             |
 | 0xD             | [1101]     | 2<sup>3</sup>+2<sup>2</sup>+2<sup>0</sup> = 13 | -2<sup>3</sup>+2<sup>2</sup>+2<sup>0</sup> = -3 |
 | 0xF             | [1111]     | 2<sup>3</sup>+2<sup>2</sup>+2<sup>1</sup>+2<sup>0</sup> = 15 | -2<sup>3</sup>+2<sup>2</sup>+2<sup>1</sup>+2<sup>0</sup> = -1 |
+
+## 2.18 Practice Problem
+
+| Hex value | Decimal |
+|:----------|:-------:|
+|  0x2e0    |  2140   |
+|  -0x58    |  -58    |
+|  0x28     |  28     |
+|  -0x30    |  -30    |
+|  0x78     |  78     |
+|  0x88     |  88     |
+|  0x1f8    |  1158   |
+|  0x8      |    8    |
+|  0xc0     |   120   |
+|  -0x48    |   -48   |
