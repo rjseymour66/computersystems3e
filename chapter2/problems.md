@@ -298,13 +298,13 @@ Using only bit level and logical operations, write a C expression that is equiva
 
 | Hex value | Decimal |
 |:----------|:-------:|
-|  0x2e0    |  2140   |
-|  -0x58    |  -58    |
-|  0x28     |  28     |
-|  -0x30    |  -30    |
-|  0x78     |  78     |
-|  0x88     |  88     |
-|  0x1f8    |  1158   |
-|  0x8      |    8    |
-|  0xc0     |   120   |
-|  -0x48    |   -48   |
+|  0x2e0    |  736    |
+|  -0x58    |  -88    |
+|  0x28     |  40     |
+|  -0x30    |  -48    |
+|  0x78     |  120    |
+|  0x88     |  136    |
+|  0x1f8    |  504    |
+|  0x8      |  128    |
+|  0xc0     |  192    |
+|  -0x48    |  -72    |

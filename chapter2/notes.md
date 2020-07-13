@@ -360,6 +360,7 @@ This is a way to represent negative values.
 - The MSB is interpreted to have negative weight
 - Expressed as a function _B2T<sub>w</sub>_
 - The name comes fromm the fact that for nonnegative x, we compute a w-bit representation of -x as 2<sup>w</sup> - x (a single two)
+- Any value of 8 hexidecimal digits beginning with 8 - f means that it is negative bc it starts with a 1
 
 ### Principle
 For vector x = [x<sub>w-1</sub>, x<sub>w-2</sub>, ..., x<sub>0</sub>]:
