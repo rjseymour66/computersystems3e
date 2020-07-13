@@ -337,4 +337,4 @@ _B2U<sub>w</sub>_([1111]) = 1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1<
 The range of values represented by w bits:
 - The least amount is [00...0]
 - The greatest amount is [11...1]
-- _UMAX<sub>w</sub>_ = \sum_{i=0}^w-1 2_i
+- _UMAX<sub>w</sub>_ = ∑ \sum_{i=0}^w-1 2_i  
