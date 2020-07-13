@@ -331,10 +331,54 @@ Integral data types are ones that represent finite ranges of integers.
 - B2U is a function that means binary to unsigned
 - _B2U<sub>w</sub>_(x) - there should be an --> over the x. w = the number of bits in the number.  
 ### Examples
-_B2U<sub>w</sub>_([0101]) = 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup>  
-_B2U<sub>w</sub>_([1111]) = 1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup>   
+_B2U<sub>4</sub>_([0101]) = 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup>  
+_B2U<sub>4</sub>_([1111]) = 1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup>   
 
 The range of values represented by w bits:
 - The least amount is [00...0]
 - The greatest amount is [11...1]
-- _UMAX<sub>w</sub>_ = ∑ \sum_{i=0}^w-1 2_i  
+- _UMAX<sub>w</sub>_ = ∑ \sum_{i=0}^w-1 2_i
+- if w= 4, _UMAX<sub>4</sub>_ = _B2U<sub>4</sub>_([1111]) = 2<sup>4</sup> - 1 = 15
+
+### Formal Definition
+_B2U<sub>w</sub>:{0, 1} --> {0,...,_UMAX<sub>w</sub>_}  
+
+### Principle: Uniqueness of unsigned encoding
+Function _B2U<sub>w</sub>_ is a bijection.  
+- **bijection** - a function _f_ that goes 2 ways:
+   1. Maps a value _x_ to a value _y_ where y = f(x)
+   2. Operates in reverse because for every y, there is a unique value x too. So, f(x) = y.
+      - This is provided by the inverse function f<sup>-1</sup> where x = f<sup>-1</sup>(y)
+### BIG IDEA
+- function _B2U<sub>w</sub>_ maps each bit vector of length w to a unique number between 2<sup>w</sup> - 1
+- it also has an inverse called _U2B<sub>w</sub>_ (unsigned to binary) that maps each number in range 2<sup>w</sup> - 1 to a unique pattern of w bits
+Every number between 0 and 2<sup>w</sup> - 1 has a unique encoding as a w-bit value.
+- There is only 1 representation of the number 11 in 4-bit unsigned encoding: `1011`
+
+## 2.2.3 Two's Complement encodings
+This is a way to represent negative values
+- The MSB is interpreted to have negative weight
+- Expressed as a function _B2T<sub>w</sub>_
+
+### Principle
+For vector x = [x<sub>w-1</sub>, x<sub>w-2</sub>, ..., x<sub>0</sub>]:
+_B2T<sub>w</sub>_(x) = -x<sub>w-1</sub>2<sup>w-1</sup> + ∑ \sum_{i=0}^w-2 2_i
+
+- The MSB is also called the 'sign bit', and its weight is -2<sup>w-1</sup>
+   - when it is 0, it is nonnegative, when 1, it is negative
+
+### Examples:
+_B2T<sub>4</sub>_([0101]) = -0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup> = 0 + 0 + 0 + 1 = 1  
+_B2T<sub>4</sub>_([1111]) = -1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup> = -8 + 4 + 2 + 1 = -1  
+
+The range of values represented by w bits:
+- the least amount is [10...0], where the first bit is 1 so it is negative, but the others are all 0s
+   - This is _TMIN<sub>w</sub>_ = -2<sup>w-1</sup>
+- the greatest value is [01...1], where the first is 0 and the rest are all 1s
+   - This is _TMAX<sub>w</sub>_ = -2<sup>w-1</sup> -1
+   - Example: _TMIN<sub>4</sub>_ = _B2T<sub>4</sub>_([1000]) = -2<sup>3</sup> = -8
+   - _TMAX<sub>4</sub>_ = _B2T<sub>4</sub>_([0111]) = 2<sup>2</sup> + 2<sup>1</sup> + 2<sup>0</sup> = 4 + 2 + 1 = 7
+- every number within the representable range has a unique encoding as a w-bit twos-complement number
+### Principle: Uniqueness of twos-complement encoding
+Function _B2T<sub>w</sub>_ is a bijection. 
+- _T2B<sub>w</sub>_ (twos complement to binary) is the inverse of _B2T<sub>w</sub>_
