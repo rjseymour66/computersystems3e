@@ -289,7 +289,7 @@ Using only bit level and logical operations, write a C expression that is equiva
 | **Hexidecimal** | **Binary** | **_B2U<sub>4</sub>(x)_**                       | **_B2T<sub>4</sub>(x)_**                        |
 | 0xE             | [1110]     | 2<sup>3</sup>+2<sup>2</sup>+2<sup>1</sup> = 14 | -2<sup>3</sup>+2<sup>2</sup>+2<sup>1</sup> = -2 |
 | 0x0             | [0000]     | 0                                              | 0                                               |
-| 0x5             | [0101]     | 2<sup>2</sup>+2<sup>0</sup> = 5                | -2<sup>2</sup>+2<sup>0</sup> = 
-| 0x8             | [1000]     |
-| 0xD             | [1101]     |
-| 0xF             | [1111]     |
+| 0x5             | [0101]     | 2<sup>2</sup>+2<sup>0</sup> = 5                | -2<sup>2</sup>+2<sup>0</sup> = 5                |
+| 0x8             | [1000]     | 2<sup>3</sup> = 8                              | -2<sup>3</sup> = -8                             |
+| 0xD             | [1101]     | 2<sup>3</sup>+2<sup>2</sup>+2<sup>0</sup> = 13 | -2<sup>3</sup>+2<sup>2</sup>+2<sup>0</sup> = -3 |
+| 0xF             | [1111]     | 2<sup>3</sup>+2<sup>2</sup>+2<sup>1</sup>+2<sup>0</sup> = 15 | -2<sup>3</sup>+2<sup>2</sup>+2<sup>1</sup>+2<sup>0</sup> = -1 |
