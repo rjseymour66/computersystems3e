@@ -503,6 +503,12 @@ ALSO...
 ```
 
 ```c
+
+short sx = -12345;         /* -12345 */
+unsigned short usx = sx;   /* 53191 */
+int x = sx;                /* -12345 */
+unsigned ux = usx;         /* 53191 */
+
 /* 16-bit word */
 printf("sx  = %d:\t", sx);
 show_bytes((byte_pointer) &sx, sizeof(short));
