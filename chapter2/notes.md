@@ -461,3 +461,9 @@ _U2T<sub>w</sub>(u) =
 ### DERIVATION: Unsigned to twos-complement conversion
 _U2T<sub>w</sub>(u)_ = -u<sub>w-1</sub>2<sup>w</sup> + u  
 - bit u<sub>w-1</sub> determines whether or not u is greater than _TMax<sub>w</sub>_ = 2<sup>w-1</sup> - 1
+
+Summary
+- For values greater than 0 and less than the _TMax_, the conversion number is x.
+- For values outside this range, you either add or subtract 2<sup>w</sup>
+
+## 2.2.5 Signed versus Unsigned in C
