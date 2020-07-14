@@ -467,3 +467,17 @@ Summary
 - For values outside this range, you either add or subtract 2<sup>w</sup>
 
 ## 2.2.5 Signed versus Unsigned in C
+Most machines use twos-complement, and most machines use signed by default.
+- constant 12345 = 0x1A2Bu = 0x1A2BU  
+
+```c
+int x = -1;
+unsigned u = 2147483648; /* 2 to the 31st */
+
+printf("x = %u = %d\n", x, x);
+_T2U<sub>32</sub>_(-1) = _UMax<sub>32</sub> = 2<sup>32</sup>
+
+printf("u = %u = %d\n", u, u);
+_U2T<sub>32</sub>_(2<sup>31</sup>) = 2<sup>31</sup> - 2<sup>32</sup> = -2<sup>31</sup> = _TMin<sub>32</sub>
+```
+- when an operation is performed with a signed and unsigned, C casts the signed to unsigned automatically
