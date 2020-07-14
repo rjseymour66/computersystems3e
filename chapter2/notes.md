@@ -486,3 +486,18 @@ _T2U<sub>32</sub>_(-1) = _UMax<sub>32</sub>_ = 2<sup>32</sup> = `printf("x = %u 
 _U2T<sub>32</sub>_(2<sup>31</sup>) = 2<sup>31</sup> - 2<sup>32</sup> = -2<sup>31</sup> = _TMin<sub>32</sub>_ = `printf("u = %u = %d\n", u, u);`
 
 - when an operation is performed with a signed and unsigned, C casts the signed to unsigned automatically
+
+## 2.2.6 Expanding the Bit Representation of a Number
+Conversion is different when it involves different word sizes. Converting from smaller to larger should always be possible.
+- To convert an unsigned to a larger data type, add leading 0s - called _zero extension_
+- To convert a twos-complement number to a larger data type, use _sign extension_, which is adding leading copies of the MSB to the number
+### Example
+Extending the word size from w=3 to w=4
+```c
+[101]  = -4 + 1 = -3
+[1101] = -8 + 4 + 1 = -3
+
+ALSO...
+[111]  = -1 = -4 + 2 + 1
+[1111] = -1 = -8 + 4 + 2 + 1
+```
