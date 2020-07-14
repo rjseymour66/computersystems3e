@@ -324,3 +324,13 @@ Using only bit level and logical operations, write a C expression that is equiva
 ## 2.20 Practice Problem
 
 When x was less < 0, the answer was 8 + 2<sup>4</sup> = 8. You have to add the `x` because it accounts for the negative number in the MSB. When x was >= 0, the answer was x.
+
+## 2.21 Practice Problem
+
+| Expression                      | Type       | Evaluation |
+|:--------------------------------|------------|------------|
+| -2147483647-1 == 2147483648U    |     
+| -2147483647-1  < 2147483647     | 
+| -2147483647-1U < 2147483647     | 
+| -2147483647-1  < 2147483647     | 
+| -2147483647-1U < 2147483647     |   

@@ -476,6 +476,11 @@ unsigned u = 2147483648; /* 2 to the 31st */
 
 printf("x = %u = %d\n", x, x);
 printf("u = %u = %d\n", u, u);
+
+RETURNS
+
+x = 4294967295 = -1
+u = 2147483648 = -2147483648
 ```
 _T2U<sub>32</sub>_(-1) = _UMax<sub>32</sub>_ = 2<sup>32</sup> = `printf("x = %u = %d\n", x, x);`  
 _U2T<sub>32</sub>_(2<sup>31</sup>) = 2<sup>31</sup> - 2<sup>32</sup> = -2<sup>31</sup> = _TMin<sub>32</sub>_ = `printf("u = %u = %d\n", u, u);`
