@@ -312,11 +312,11 @@ Using only bit level and logical operations, write a C expression that is equiva
 
 ## 2.19 Practice Problem
 
-| x  | **_T2U<sub>4</sub>(x)_** |
-|:--:|:------------------------:|
-| -8 |   
-| -3 |
-| -2 |
-| -1 |
-|  0 |
-|  5 |
+| Hex | x  | **_T2U<sub>4</sub>(x)_** |
+|:---:|:--:|:------------------------:|
+| 0x8 | -8 |   8                      |
+| 0xD | -3 |   13                     |
+| 0xE | -2 |   14                     |
+| 0xF | -1 |   15                     |
+| 0x0 |  0 |   0                      |
+| 0x5 |  5 |   5                      |

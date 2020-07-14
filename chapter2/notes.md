@@ -343,7 +343,7 @@ The range of values represented by w bits:
 ### Formal Definition
 _B2U<sub>w</sub>:{0, 1} --> {0,...,_UMAX<sub>w</sub>_}  
 
-### Principle: Uniqueness of unsigned encoding
+### PRINCIPLE: Uniqueness of unsigned encoding
 Function _B2U<sub>w</sub>_ is a bijection.  
 - **bijection** - a function _f_ that goes 2 ways:
    1. Maps a value _x_ to a value _y_ where y = f(x)
@@ -362,7 +362,7 @@ This is a way to represent negative values.
 - The name comes fromm the fact that for nonnegative x, we compute a w-bit representation of -x as 2<sup>w</sup> - x (a single two)
 - Any value of 8 hexidecimal digits beginning with 8 - f means that it is negative bc it starts with a 1
 
-### Principle
+### PRINCIPLE
 For vector x = [x<sub>w-1</sub>, x<sub>w-2</sub>, ..., x<sub>0</sub>]:
 _B2T<sub>w</sub>_(x) = -x<sub>w-1</sub>2<sup>w-1</sup> + ∑ \sum_{i=0}^w-2 2_i
 
@@ -381,7 +381,7 @@ The range of values represented by w bits:
    - Example: _TMIN<sub>4</sub>_ = _B2T<sub>4</sub>_([1000]) = -2<sup>3</sup> = -8
    - _TMAX<sub>4</sub>_ = _B2T<sub>4</sub>_([0111]) = 2<sup>2</sup> + 2<sup>1</sup> + 2<sup>0</sup> = 4 + 2 + 1 = 7
 - every number within the representable range has a unique encoding as a w-bit twos-complement number
-### Principle: Uniqueness of twos-complement encoding
+### PRINCIPLE: Uniqueness of twos-complement encoding
 Function _B2T<sub>w</sub>_ is a bijection. 
 - _T2B<sub>w</sub>_ (twos complement to binary) is the inverse of _B2T<sub>w</sub>_
 - Two's complement is assymetric: | _TMmin_ = | _TMax_ | + 1.
@@ -440,3 +440,13 @@ Now we can define _T2U<sub>w</sub>_ as _T2U<sub>w</sub>(x) = _B2U<sub>w</sub>(T2
    - Previous code shows that _T2U_<sub>16</sub>(-12345) = 53,191 and _U2T_<sub>16</sub>(53191) = 12,345   
    - Also, 53,191 + 12,345 = 65,536 = 2<sup>16</sup>
 
+### PRINCIPLE: Conversion from twos complement to unsigned
+For such _TMin<sub>w</sub>_ <= x <= _TMax<sub>w</sub>_:  
+
+_T2U<sub>w</sub>(x) = 
+- x + 2<sup>w</sup>, x < 0
+   - Example: _T2U<sub>16</sub>(-12,345) =  = -12,345 + 2<sup>16</sup> = 53,191
+- x, x >= 0
+
+### DERIVATION: Conversion from twos complement to unsigned
+_B2U<sub>w</sub>(T2B<sub>w</sub>(x))_ = _T2U<sub>w</sub>(x)_ = x<sub>w-1</sub> + 2<sup>w</sup>
