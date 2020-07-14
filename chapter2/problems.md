@@ -320,3 +320,7 @@ Using only bit level and logical operations, write a C expression that is equiva
 | 0xF | -1 |   15                     |
 | 0x0 |  0 |   0                      |
 | 0x5 |  5 |   5                      |
+
+## 2.20 Practice Problem
+
+When x was less < 0, the answer was 8 + 2<sup>4</sup> = 8. You have to add the `x` because it accounts for the negative number in the MSB. When x was >= 0, the answer was x.

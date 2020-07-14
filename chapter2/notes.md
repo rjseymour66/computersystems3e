@@ -441,7 +441,7 @@ Now we can define _T2U<sub>w</sub>_ as _T2U<sub>w</sub>(x) = _B2U<sub>w</sub>(T2
    - Also, 53,191 + 12,345 = 65,536 = 2<sup>16</sup>
 
 ### PRINCIPLE: Conversion from twos complement to unsigned
-For such _TMin<sub>w</sub>_ <= x <= _TMax<sub>w</sub>_:  
+For x such that _TMin<sub>w</sub>_ <= x <= _TMax<sub>w</sub>_:  
 
 _T2U<sub>w</sub>(x) = 
 - x + 2<sup>w</sup>, x < 0
@@ -450,3 +450,14 @@ _T2U<sub>w</sub>(x) =
 
 ### DERIVATION: Conversion from twos complement to unsigned
 _B2U<sub>w</sub>(T2B<sub>w</sub>(x))_ = _T2U<sub>w</sub>(x)_ = x<sub>w-1</sub> + 2<sup>w</sup>
+
+### PRINCIPLE: Unsigned to twos-complemment conversion
+For _u_ such that 0<= u <= UMax<sub>w</sub>:
+
+_U2T<sub>w</sub>(u) = 
+- u, when u <= _TMax<sub>w</sub>_
+- u - 2<sup>w</sup>, when u > _TMax<sub>w</sub>_
+
+### DERIVATION: Unsigned to twos-complement conversion
+_U2T<sub>w</sub>(u)_ = -u<sub>w-1</sub>2<sup>w</sup> + u  
+- bit u<sub>w-1</sub> determines whether or not u is greater than _TMax<sub>w</sub>_ = 2<sup>w-1</sup> - 1
