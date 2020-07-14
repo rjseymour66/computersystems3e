@@ -411,3 +411,32 @@ short mx = -x;
 show_bytes((byte_pointer) &x, sizeof(short));
 show_bytes((byte_pointer) &mx, sizeof(short));
 ```
+
+## 2.2.4 Conversions between Signed and Unsigned
+Be careful when you are converting from signed to unsigned. The following example shows converting from twos complement -12345 to unsigned 53191:
+```c
+short int v = -12345;
+unsigned short uv = (unsigned short) v;
+printf("v = %d, uv = %u\n", v, uv);
+
+RETURNS:
+
+Convert signed to unsigned
+v = -12345, uv = 53191
+```
+- The bit sign for -12345 twos complement is 1100 1111 1100 0111
+- The bit sign for 53191  twos complement is 1100 1111 1100 0111, too.
+- So, the bits aren't changing, only how they are interpreted is changing
+
+### Converting from Twos-Complement to Unsigned (casting)
+We currently have the following:
+- _U2B<sub>w</sub>(x)_, when 0 <= x <= _UMax_, returns unique unsigned representation of x
+- _TB2<sub>w</sub>(x)_, when _TMin<sub>w</sub>_ <= x <= _TMax<sub>w</sub>_, returns unique twos-complement representation of x  
+
+Now we can define _T2U<sub>w</sub>_ as _T2U<sub>w</sub>(x) = _B2U<sub>w</sub>(T2B<sub>w</sub>(x))_
+- Accepts number _TMin<sub>w</sub>_ <= x <= _TMax<sub>w</sub>_
+- Argument is a twos-complement and the result is unsigned  
+- The reverse of that is _U2T<sub>w</sub>(x) = _B2U<sub>w</sub>(U2B<sub>w</sub>(x))_
+   - Previous code shows that _T2U_<sub>16</sub>(-12345) = 53,191 and _U2T_<sub>16</sub>(53191) = 12,345   
+   - Also, 53,191 + 12,345 = 65,536 = 2<sup>16</sup>
+

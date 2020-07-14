@@ -308,3 +308,15 @@ Using only bit level and logical operations, write a C expression that is equiva
 |  0x8      |  128    |
 |  0xc0     |  192    |
 |  -0x48    |  -72    |
+
+
+## 2.19 Practice Problem
+
+| x  | **_T2U<sub>4</sub>(x)_** |
+|:--:|:------------------------:|
+| -8 |   
+| -3 |
+| -2 |
+| -1 |
+|  0 |
+|  5 |
