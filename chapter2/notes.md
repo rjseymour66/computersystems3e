@@ -525,7 +525,7 @@ show_bytes((byte_pointer) &ux, sizeof(unsigned));
 
 RETURNS
 
-sx   = -12345:	 c7 cf
+sx  = -12345:	 c7 cf
 usx = 53191:	 c7 cf
 x   = -12345	 c7 cf ff ff
 ux  = 53191:	 c7 cf 00 00
