@@ -491,7 +491,7 @@ _U2T<sub>32</sub>_(2<sup>31</sup>) = 2<sup>31</sup> - 2<sup>32</sup> = -2<sup>31
 Conversion is different when it involves different word sizes. Converting from smaller to larger should always be possible.
 - To convert an unsigned to a larger data type, add leading 0s - called _zero extension_
 - To convert a twos-complement number to a larger data type, use _sign extension_, which is adding leading copies of the MSB to the number
-### Example
+### Examples
 Extending the word size from w=3 to w=4
 ```c
 [101]  = -4 + 1 = -3
@@ -500,4 +500,27 @@ Extending the word size from w=3 to w=4
 ALSO...
 [111]  = -1 = -4 + 2 + 1
 [1111] = -1 = -8 + 4 + 2 + 1
+```
+
+```c
+/* 16-bit word */
+printf("sx  = %d:\t", sx);
+show_bytes((byte_pointer) &sx, sizeof(short));
+
+printf("usx = %u:\t", usx);
+show_bytes((byte_pointer) &usx, sizeof(unsigned short));
+
+/* 32-bit word */
+printf("x   = %d\t", x);
+show_bytes((byte_pointer) &x, sizeof(int));
+
+printf("ux  = %u:\t", ux);
+show_bytes((byte_pointer) &ux, sizeof(unsigned));
+
+RETURNS
+
+sx   = -12345:	 c7 cf
+usx = 53191:	 c7 cf
+x   = -12345	 c7 cf ff ff
+ux  = 53191:	 c7 cf 00 00
 ```
