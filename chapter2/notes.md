@@ -554,3 +554,21 @@ x = _U2T<sub>k</sub>(x mod 2<sup>k</sup>)
 - One trick is to never use unsigned numbers 
 
 ## 2.3 Integer Arithmetic
+
+### 2.3.1 Unsigned Addition
+When 0 <= x, y < 2<sup>w</sup>, 0 <= x + y < 2<sup>w11</sup> - 2  
+- So, with 4 bits, x or y can range from 0 - 15, but the sum can range from 0 - 30.
+- 4-bit example: 0 <= x + y < 2<sup>w=1</sup> - 2    =    0 <= x + y < 2<sup>5</sup> - 2   =   0 <= x + y < 32 - 2   =   0 <= x + y < 32 - 2
+- _word size inflation_ - If we retain this sum and add it to another value, it would require w + 2 bits  
+
+#### Example
+To truncate when the w-bit word is longer than 2<sup>w-1</sup>, you just discard any bits with a weight higher than 2<sup>w-1</sup> using modulo math.  
+```
+x = 9   [1001]
+y = 12  [1100]
+
+1. x + y = 21 = [10101]
+2. Discard highest order bit to get [0101] = 5
+3. (original sum) mod (bit weight of dropped bit) = unsigned number representation
+21 mod 16 = 5
+```
