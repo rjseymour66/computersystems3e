@@ -572,3 +572,13 @@ y = 12  [1100]
 3. (original sum) mod (bit weight of dropped bit) = unsigned number representation
 21 mod 16 = 5
 ```
+#### Overflow
+Defining operation +<sup>u</sup><sub>w</sub> in theory and then with 4 bits where x = 9 and y = 9 to demonstrate overflow:  
+
+| Normal                 | Overflow |
+|:----------------------:|:--------:|
+| x + y < 2<sup>w</sup>  | 2<sup>w</sup> <= x + y < 2<sup>w+1</sup> |
+| 9 + 9 < 16             | 16 <= 9 + 9 < 32 |
+
+
+x +<sup>u</sup><sub>w</sub> = x + y 
