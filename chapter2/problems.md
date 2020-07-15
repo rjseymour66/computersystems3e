@@ -334,3 +334,49 @@ When x was less < 0, the answer was 8 + 2<sup>4</sup> = 8. You have to add the `
 | -2147483647-1U < 2147483647     |  Unsigned  |    0       |
 | -2147483647-1  < -2147483647    |  Signed    |    1       |
 | -2147483647-1U < -2147483647    |  Unsigned  |    1       |
+
+## 2.22 Practice Problem
+
+```c
+A. [1011]      = -8 + 2 + 1 = -5
+B. [11011]     = -16 + 8 + 2 + 1 = -5 
+C. [111011]    = -32 + 16 + 8 + 2 + 1 = -5 
+```
+
+## 2.23 Practice Problem
+```c
+/* Extracts a value from the low-order 8 bits of the argument
+   giving an integer between 0 and 255 */
+int fun1(unsigned word) {
+   return (int) ((word << 24) >> 24);
+}
+
+/* Extracts a value from the low-order 8 bits of the argument
+   but it also performs sign extension resulting in a number 
+   between -128 and 127 */
+int fun2(unsigned word) {
+   return ((int) word << 24) >> 24;
+}
+
+signed right = arithmetically (MSB)
+unsigned right = logically (0s)
+```
+
+| w          | fun1(w)     | fun2(w)    |
+|:----------:|:-----------:|:----------:|
+| 0x00000076 | 0x00000076  | 0x00000076 |
+| 0x87654321 | 0x00000021  | 0x00000021 |
+| 0x000000C9 | 0x000000C9  | 0xFFFFFFC9 |
+| 0xEDCBA987 | 0x00000087  | 0xEEEEEE87 |
+
+
+## 2.24 Practice Problem
+
+| Hex          | Hex           | Unsigned     | Unsigned      | Twos Complement | Twos Complement |
+|:------------:|:-------------:|:------------:|:-------------:|:---------------:|:---------------:|
+| **Original** | **Truncated** | **Original** | **Truncated** | **Original**    | **Truncated**   |
+| 0            | 0             | 0            |               |     0           |                 |
+| 2            | 2             | 2            |               |     2           |               |
+| 9            | 1             | 9            |               |     -7          |               |
+| B            | 3             | 11           |               |     -5          |               |
+| F            | 7             | 15           |               |     -1          |               |

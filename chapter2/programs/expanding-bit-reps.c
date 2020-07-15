@@ -27,6 +27,14 @@ int main() {
 
    printf("ux  = %u:\t", ux);
    show_bytes((byte_pointer) &ux, sizeof(unsigned));
+
+   printf("*******************************\n\n");
+
+   short dx = -12345;
+   unsigned uy = dx;
+
+   printf("uy = %u:\t", uy);
+   show_bytes((byte_pointer) &uy, sizeof(unsigned));
 }
 
 void show_bytes(byte_pointer start, size_t len)

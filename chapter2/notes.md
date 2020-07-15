@@ -530,3 +530,23 @@ usx = 53191:	 c7 cf
 x   = -12345	 c7 cf ff ff
 ux  = 53191:	 c7 cf 00 00
 ```
+
+### DERIVATION: Expansion of a twos-complement number by sign extension.  
+Let w' = w + k
+
+_B2T<sub>w+k</sub>_(**[x<sub>w-1</sub>, ..., x<sub>w-1</sub>**, x<sub>w-1</sub>, x<sub>w-2</sub>, ..., x<sub>0</sub>]) = _B2Tx<sub>w</sub>_([x<sub>w-1</sub>, x<sub>w-2</sub>, ..., x<sub>0</sup>])
+
+## 2.2.7 Truncating Numbers
+Reduce the number of bits  
+
+The following code casts x to be a short truncates a 32-bit int into a 16-bit short.
+```c
+int x = 53191;
+short sx = (short) x; /* -12345 */
+int y = sx;           /* -12345 */
+```
+### PRINCIPLE: Truncation of an unsigned number
+Let x = _B2U<sub>k</sub>(x)_ and let x' = _B2U<sub>k</sub>(x)_. x' = x mod 2<sup>k</sup>
+
+### PRINCIPLE: Truncation of a twos-complement number
+x = _U2T<sub>k</sub>(x mod 2<sup>k</sup>)
