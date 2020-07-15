@@ -375,8 +375,24 @@ unsigned right = logically (0s)
 | Hex          | Hex           | Unsigned     | Unsigned      | Twos Complement | Twos Complement |
 |:------------:|:-------------:|:------------:|:-------------:|:---------------:|:---------------:|
 | **Original** | **Truncated** | **Original** | **Truncated** | **Original**    | **Truncated**   |
-| 0            | 0             | 0            |               |     0           |                 |
-| 2            | 2             | 2            |               |     2           |               |
-| 9            | 1             | 9            |               |     -7          |               |
-| B            | 3             | 11           |               |     -5          |               |
-| F            | 7             | 15           |               |     -1          |               |
+| 0            | 0             | 0            |     0         |     0           |       0         |
+| 2            | 2             | 2            |     2         |     2           |       2         |
+| 9            | 1             | 9            |     1         |     -7          |       1         |
+| B            | 3             | 11           |     3         |     -5          |       3         |
+| F            | 7             | 15           |     7         |     -1          |       -1        |
+
+## 2.25 Practice Problem
+The for loop has `<= length -1`, which makes it a negative number. Change the code to read `< length`
+
+
+## 2.25 Practice Problem
+
+A. If the returned value is less than 0, then there will be a memory error.  
+B. strlen returns an unsigned result, so a negative number would be a large, unsigned number
+C. Change the return statement to return the longer string: 
+
+```c
+int strlonger(char *s, char *t) {
+   return strlen(s) > strlen(t);
+}
+```

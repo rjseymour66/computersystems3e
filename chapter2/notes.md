@@ -550,3 +550,5 @@ Let x = _B2U<sub>k</sub>(x)_ and let x' = _B2U<sub>k</sub>(x)_. x' = x mod 2<sup
 
 ### PRINCIPLE: Truncation of a twos-complement number
 x = _U2T<sub>k</sub>(x mod 2<sup>k</sup>)
+
+- One trick is to never use unsigned numbers 
