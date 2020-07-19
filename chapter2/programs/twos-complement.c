@@ -23,14 +23,27 @@ int main(void)
    show_bytes((byte_pointer)&mx, sizeof(short));
 
    printf("\nConvert signed to unsigned\n");
+   printf("Casting keeps the bit values identical but changes how the bits are interpreted.\n\n");
 
    short int v = -12345;
    unsigned short uv = (unsigned short)v;
    printf("v = %d, uv = %u\n", v, uv);
 
+   printf("\n");
+
+   printf("Here, we are casting UMax to signed:\n\n");
+
    unsigned u = 4294967295u; /* UMax */
    int     tu = (int)u;
    printf("u = %u, tu = %d\n", u, tu);
+
+   printf("\n");
+   printf("More examples:\n");
+   int t1 = -5;
+   unsigned ut1 = (unsigned int)t1;
+   printf("t1 = %d, ut1 = %u", t1, ut1);
+
+   printf("\n");
 
 }
 

@@ -325,18 +325,19 @@ There are 2 different ways that bits can encode integers:
 | _B2T<sub>w</sub>(x)_  | (-x<sub>w-1</sub>2<sup>w-1</sup>) + x<sub>i</sub> * 2<sup>i</sup> for all bits _w-2_ until the end of the vector | [1111] = -1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup> = -8 + 4 + 2 + 1 = -1 | 
 | _B2U<sub>w</sub>(x)_  | x<sub>i</sub> * 2<sup>i</sup> for all bits  | [0101] = 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup> |
 | _U2B<sub>w</sub>(x)_  | | |
-| _U2T<sub>w</sub>(x)_  | | | 
+| _U2T<sub>w</sub>(x)_  | _B2T<sub>w</sub>_(_U2B<sub>w</sub>(x)_)     | Returns 2C representation of unsigned _x_.                                             | 
 | _T2B<sub>w</sub>(x)_  | | |
-| _T2U<sub>w</sub>(x)_  | | |
+| _T2U<sub>w</sub>(x)_  | when x < 0, x + 2<sup>w</sup>.     | Takes a number between _TMin_ and _TMax_ and returns a number between 0 and _UMax_     |
+|                       | when x > 0, x                      | |
 
-| Data Type |       | Symbol               | Formula          | Example                           | Notes   |
-|:---------:|:-----:|:--------------------:|:-----------------:|:--------------------------------:|:-------:|
-| Unsigned  | Min   |                      |   always 0        |                                  | Every value between 0 and 2<sup>w</sup> - 1 has a unique _w_-bit value | 
-|           | Max   | _UMax<sub>w</sub>_   | 2<sup>w</sup> - 1 | [1111] = 2<sup>4</sup> - 1 = 15  |
-| Signed    | Min   |                      |                   |
-|           | Max
-| 2C        | Min
-|           | Max
+| Data Type |       | Symbol               | Formula              | Example                           | Notes   |
+|:---------:|:-----:|:--------------------:|:--------------------:|:----------------------------------|:--------|
+| Unsigned  | Min   |                      |   always 0           |                                   | Every value between 0 and 2<sup>w</sup> - 1 has a unique _w_-bit value | 
+|           | Max   | _UMax<sub>w</sub>_   | 2<sup>w</sup> - 1    | [1111] = 2<sup>4</sup> - 1 = 15   |
+| Signed    | Min   |                      |                      |
+|           | Max   | | | |
+| 2C        | Min   | _TMin<sub>w</sub>_   | -2<sup>w-1</sup>     | [1000] = -2<sup>3</sup> = -8      | Represents digits from -(2<sup>w-1</sup>) to (2<sup>w-1</sup> - 1) |
+|           | Max   | _TMax<sub>w</sub>_   |  2<sup>i</sup> for all bits starting at 2<sup>w-1</sup> - 1 | [0111] = 2<sup>2</sup> + 2<sup>1</sup> + 2<sup>0</sup> = 7 | |
 
 
 
@@ -376,8 +377,10 @@ Every number between 0 and 2<sup>w</sup> - 1 has a unique encoding as a w-bit va
 - There is only 1 representation of the number 11 in 4-bit unsigned encoding: `1011`
 
 ## 2.2.3 Two's Complement encodings
-This is a way to represent negative values.
-- The MSB is interpreted to have negative weight
+This is a way to represent negative values. Represents digits from -(2<sup>w-1</sup>) to (2<sup>w-1</sup> - 1)
+- 2C's range is asymmetric, meaning that there is no positive counterpart to _TMin_:
+   - |_TMin_| = |_TMax_| + 1
+- The MSB is called the _sign bit_. If the MSB is 1, it is interpreted to have negative weight
 - Expressed as a function _B2T<sub>w</sub>_
 - The name comes fromm the fact that for nonnegative x, we compute a w-bit representation of -x as 2<sup>w</sup> - x (a single two)
 - Any value of 8 hexidecimal digits beginning with 8 - f means that it is negative bc it starts with a 1
