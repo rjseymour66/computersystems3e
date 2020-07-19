@@ -320,6 +320,17 @@ There are 2 different ways that bits can encode integers:
 1. nonnegative  
 2. negative, zero, and positive integers
 
+| Symbol                | Meaning            |         Formula                             | Example                                                                                |
+|:---------------------:|:------------------:|:-------------------------------------------:|:--------------------------------------------------------------------------------------:|
+| _B2T<sub>w</sub>(x)_  | Binary to 2C       | x<sub>i</sub> * 2<sup>i</sup> for all bits  | [0101] = 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup> | 
+| _B2U<sub>w</sub>(x)_  | Binary to Unsigned | | |
+| _U2B<sub>w</sub>(x)_  | Unsigned to Binary | | |
+| _U2T<sub>w</sub>(x)_  | Unsigned to 2C     |     | | 
+| _T2B<sub>w</sub>(x)_  | 2C to Binary       | | |
+| _T2U<sub>w</sub>(x)_  | 2C to Unsigned     | | |
+
+
+
 ## 2.2.1 Integral Data Types
 Integral data types are ones that represent finite ranges of integers. 
 - Have typical range of values for 32 and 64 bit programs
