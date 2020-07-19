@@ -321,8 +321,8 @@ There are 2 different ways that bits can encode integers:
 2. negative, zero, and positive integers
 
 | Symbol                | Meaning            |         Formula                             | Example                                                                                |
-|:---------------------:|:------------------:|:-------------------------------------------:|:--------------------------------------------------------------------------------------:|
-| _B2T<sub>w</sub>(x)_  | Binary to 2C       | -x<sub>w-1</sub>2<sup>w-1</sup> + x<sub>i</sub> * 2<sup>i</sup> for all bits _w-2_ until the end of the vector | [1111] = -1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup> = -8 + 4 + 2 + 1 = -1 | 
+|:---------------------:|:------------------:|:--------------------------------------------|:---------------------------------------------------------------------------------------|
+| _B2T<sub>w</sub>(x)_  | Binary to 2C       | (-x<sub>w-1</sub>2<sup>w-1</sup>) + x<sub>i</sub> * 2<sup>i</sup> for all bits _w-2_ until the end of the vector | [1111] = -1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup> = -8 + 4 + 2 + 1 = -1 | 
 | _B2U<sub>w</sub>(x)_  | Binary to Unsigned | x<sub>i</sub> * 2<sup>i</sup> for all bits  | [0101] = 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup> |
 | _U2B<sub>w</sub>(x)_  | Unsigned to Binary | | |
 | _U2T<sub>w</sub>(x)_  | Unsigned to 2C     |     | | 
