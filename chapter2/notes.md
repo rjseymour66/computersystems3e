@@ -327,7 +327,7 @@ There are 2 different ways that bits can encode integers:
 | _U2B<sub>w</sub>(x)_  | | |
 | _U2T<sub>w</sub>(x)_  | _B2T<sub>w</sub>_(_U2B<sub>w</sub>(x)_)     | Returns 2C representation of unsigned _x_.                                             | 
 | _T2B<sub>w</sub>(x)_  | | |
-| _T2U<sub>w</sub>(x)_  | when x < 0, x + 2<sup>w</sup>.     | Takes a number between _TMin_ and _TMax_ and returns a number between 0 and _UMax_     |
+| _T2U<sub>w</sub>(x)_  | when x < 0, x + 2<sup>w</sup>               | _T2U<sub>4</sub>_(-2) = -2 + 16                                                         |
 |                       | when x > 0, x                      | |
 
 | Data Type |       | Symbol               | Formula              | Example                           | Notes   |
