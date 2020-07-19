@@ -322,12 +322,21 @@ There are 2 different ways that bits can encode integers:
 
 | Symbol                | Meaning            |         Formula                             | Example                                                                                |
 |:---------------------:|:------------------:|:-------------------------------------------:|:--------------------------------------------------------------------------------------:|
-| _B2T<sub>w</sub>(x)_  | Binary to 2C       | x<sub>i</sub> * 2<sup>i</sup> for all bits  | [0101] = 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup> | 
-| _B2U<sub>w</sub>(x)_  | Binary to Unsigned | | |
+| _B2T<sub>w</sub>(x)_  | Binary to 2C       | -x<sub>w-1</sub>2<sup>w-1</sup> + x<sub>i</sub> * 2<sup>i</sup> for all bits _w-2_ until the end of the vector | [1111] = -1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup> = -8 + 4 + 2 + 1 = -1 | 
+| _B2U<sub>w</sub>(x)_  | Binary to Unsigned | x<sub>i</sub> * 2<sup>i</sup> for all bits  | [0101] = 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup> |
 | _U2B<sub>w</sub>(x)_  | Unsigned to Binary | | |
 | _U2T<sub>w</sub>(x)_  | Unsigned to 2C     |     | | 
 | _T2B<sub>w</sub>(x)_  | 2C to Binary       | | |
 | _T2U<sub>w</sub>(x)_  | 2C to Unsigned     | | |
+
+| Data Type |       | Symbol               | Formula          | Example                           | Notes   |
+|:---------:|:-----:|:--------------------:|:-----------------:|:--------------------------------:|:-------:|
+| Unsigned  | Min   |                      |   always 0        |                                  | Every value between 0 and 2<sup>w</sup> - 1 has a unique _w_-bit value | 
+|           | Max   | _UMax<sub>w</sub>_   | 2<sup>w</sup> - 1 | [1111] = 2<sup>4</sup> - 1 = 15  |
+| Signed    | Min   |                      |                   |
+|           | Max
+| 2C        | Min
+|           | Max
 
 
 
@@ -352,10 +361,10 @@ The range of values represented by w bits:
 - if w= 4, _UMAX<sub>4</sub>_ = _B2U<sub>4</sub>_([1111]) = 2<sup>4</sup> - 1 = 15
 
 ### Formal Definition
-_B2U<sub>w</sub>:{0, 1} --> {0,...,_UMAX<sub>w</sub>_}  
+_B2U<sub>w</sub>_:{0, 1} --> {0,...,_UMAX<sub>w</sub>_}  
 
 ### PRINCIPLE: Uniqueness of unsigned encoding
-Function _B2U<sub>w</sub>_ is a bijection.  
+Function _B2U<sub>w</sub>_ is a bijection. A bijection means that there is a unique value mapping between two variables where, when input into a function, each element of one set is paired with exactly one element of the other set and vice versa.  
 - **bijection** - a function _f_ that goes 2 ways:
    1. Maps a value _x_ to a value _y_ where y = f(x)
    2. Operates in reverse because for every y, there is a unique value x too. So, f(x) = y.
