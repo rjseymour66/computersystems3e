@@ -320,16 +320,19 @@ There are 2 different ways that bits can encode integers:
 1. nonnegative  
 2. negative, zero, and positive integers
 
-| Symbol                |         Formula                             | Example                                                                                |
-|:---------------------:|:--------------------------------------------|:---------------------------------------------------------------------------------------|
-| _B2T<sub>w</sub>(x)_  | (-x<sub>w-1</sub>2<sup>w-1</sup>) + x<sub>i</sub> * 2<sup>i</sup> for all bits _w-2_ until the end of the vector | [1111] = -1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup> = -8 + 4 + 2 + 1 = -1 | 
-| _B2U<sub>w</sub>(x)_  | x<sub>i</sub> * 2<sup>i</sup> for all bits  | [0101] = 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup> |
-| _U2B<sub>w</sub>(x)_  | | |
-| _U2T<sub>w</sub>(x)_  | _B2T<sub>w</sub>_(_U2B<sub>w</sub>(x)_)     | Returns 2C representation of unsigned _x_.                                             | 
-| _T2B<sub>w</sub>(x)_  | | |
-| _T2U<sub>w</sub>(x)_  | when x < 0, x + 2<sup>w</sup>               | _T2U<sub>4</sub>_(-2) = -2 + 16                                                         |
-|                       | when x > 0, x                      | |
+| Symbol                |         Formula                                         | Example                                                                                |
+|:---------------------:|:--------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| _B2T<sub>w</sub>(x)_  | (-x<sub>w-1</sub>2<sup>w-1</sup>) + x<sub>i</sub> * 2<sup>i</sup> for all bits _w-2_ until the end of the vector | [1111] = -1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup> = -8 + 4 + 2 + 1 = -1       | 
+| _B2U<sub>w</sub>(x)_  | x<sub>i</sub> * 2<sup>i</sup> for all bits              | [0101] = 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup> |
+| _U2B<sub>w</sub>(x)_  |                                                         | |
+| _U2T<sub>w</sub>(x)_  | when x <=_TMax<sub>w</sub>_, u (_TMax_ = 2<sup>w-1</sup> - 1)  |                                             |
+|                       | when x > _TMax<sub>w</sub>_, u - 2<sup>w</sup>          | 
+| _T2B<sub>w</sub>(x)_  |                                                   | |
+| _T2U<sub>w</sub>(x)_  | when x < 0, x + 2<sup>w</sup>               | _T2U<sub>4</sub>_(-2) = -2 + 16                                                        |
+|                       | when x > 0, x                               | _T2U<sub>4</sub>_(2) = 2                                                               |
 
+
+-(2<sup>w-1</sup>) to (2<sup>w-1</sup> - 1)
 | Data Type |       | Symbol               | Formula              | Example                           | Notes   |
 |:---------:|:-----:|:--------------------:|:--------------------:|:----------------------------------|:--------|
 | Unsigned  | Min   |                      |   always 0           |                                   | Every value between 0 and 2<sup>w</sup> - 1 has a unique _w_-bit value | 
