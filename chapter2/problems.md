@@ -396,3 +396,12 @@ int strlonger(char *s, char *t) {
    return strlen(s) > strlen(t);
 }
 ```
+
+## 2.27 Practice Problem
+
+```c
+int uadd_ok(unsigned x, unsigned y) {
+   unsigned sum = x + y;
+   return sum >= x;
+}
+```
