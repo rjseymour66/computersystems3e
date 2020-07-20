@@ -420,10 +420,16 @@ int uadd_ok(unsigned x, unsigned y) {
 
 ## 2.29 Practice Problem
 
-| x       | y       | x + y   | x + y (2C) | Case    | 
-|:-------:|:-------:|:-------:|:----------:|:-------:|
-| [10100] | [10001] |  | | |
-| [11000] | [11000] |  | | |
-| [10111] | [01000] |  | | |
-| [00010] | [00101] |  | | |
-| [01100] | [00100] |  | | |
+Cases  
+1. Addition of two negative numbers returns a positive.
+2. 2C sum is negative, but equal to the integer sum of x + y.
+3. 2C sum is positive, but equal to the integer sum of x + y.
+4. Addition of 2 positive numbers returns a negative.
+
+| x           | y           | x + y        | x + y (2C)  | Case    | 
+|:-----------:|:-----------:|:------------:|:-----------:|:-------:|
+| [10100] -12 | [10001] -15 | [100101] -27 | [00101] 5   |  1      |
+| [11000] | [11000] | [] | [] |  |
+| [10111] | [01000] | [] | [] |  |
+| [00010] | [00101] | [] | [] |  |
+| [01100] | [00100] | [] | [] |  |
