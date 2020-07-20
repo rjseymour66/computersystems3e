@@ -640,6 +640,7 @@ Must decide what to do when the number is too large or too small to represent.
 For integer values `x` and `y` in the range -2<sup>w-1</sup> <= x, y <= 2<sup>w-1</sup> -1: 
 
 |      Type         |       x value           | Equation                                     | Example |
+|:------------------|:------------------------|:---------------------------------------------|:------------------|
 | Positive overflow | x + y - 2<sup>w-1</sup> | 2<sup>w-1</sup> <= x + y                     | |
 | Normal            | x + y                   | -2<sup>w-1</sup> <= x + y <= 2<sup>w-1</sup> |  |
 | Negative overflow | x + y - 2<sup>w</sup>   | x + y < -2<sup>w-1</sup>                     | |
