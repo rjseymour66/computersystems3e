@@ -320,19 +320,19 @@ There are 2 different ways that bits can encode integers:
 1. nonnegative  
 2. negative, zero, and positive integers
 
+### Formulas
 | Symbol                |         Formula                                         | Example                                                                                |
 |:---------------------:|:--------------------------------------------------------|:---------------------------------------------------------------------------------------|
 | _B2T<sub>w</sub>(x)_  | (-x<sub>w-1</sub>2<sup>w-1</sup>) + x<sub>i</sub> * 2<sup>i</sup> for all bits _w-2_ until the end of the vector | [1111] = -1 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 1 * 2<sup>1</sup> + 1 * 2<sup>0</sup> = -8 + 4 + 2 + 1 = -1       | 
 | _B2U<sub>w</sub>(x)_  | x<sub>i</sub> * 2<sup>i</sup> for all bits              | [0101] = 0 * 2<sup>3</sup> + 1 * 2<sup>2</sup> + 0 * 2<sup>1</sup> + 1 * 2<sup>0</sup> |
 | _U2B<sub>w</sub>(x)_  |                                                         | |
-| _U2T<sub>w</sub>(x)_  | when x <=_TMax<sub>w</sub>_, u (_TMax_ = 2<sup>w-1</sup> - 1)                 |  _U2T<sub>4</sub>_(6) = 6    |
-|                       | when x > _TMax<sub>w</sub>_, u - 2<sup>w</sup> (_TMax_ = 2<sup>w-1</sup> - 1) |  _U2T<sub>4</sub>_(11) = 11 - 2<sup>4</sup> = -5 ???|
+| _U2T<sub>w</sub>(x)_  | when x <=_TMax<sub>w</sub>_, u (_TMax_ = 2<sup>w-1</sup> - 1)                 |  _U2T<sub>4</sub>_(6) =                                          |
+|                       | when x > _TMax<sub>w</sub>_, u - 2<sup>w</sup> (_TMax_ = 2<sup>w-1</sup> - 1) |  _U2T<sub>4</sub>_(11) = 11 - 2<sup>4</sup> = -5                 |
 | _T2B<sub>w</sub>(x)_  |                                                   | |
 | _T2U<sub>w</sub>(x)_  | when x < 0, x + 2<sup>w</sup>               | _T2U<sub>4</sub>_(-2) = -2 + 16                                                        |
 |                       | when x > 0, x                               | _T2U<sub>4</sub>_(2) = 2                                                               |
 
-
--(2<sup>w-1</sup>) to (2<sup>w-1</sup> - 1)
+### Mins and Maxes
 | Data Type |       | Symbol               | Formula              | Example                           | Notes   |
 |:---------:|:-----:|:--------------------:|:--------------------:|:----------------------------------|:--------|
 | Unsigned  | Min   |                      |   always 0           |                                   | Every value between 0 and 2<sup>w</sup> - 1 has a unique _w_-bit value | 
@@ -439,7 +439,7 @@ show_bytes((byte_pointer) &mx, sizeof(short));
 ```
 
 ## 2.2.4 Conversions between Signed and Unsigned
-Be careful when you are converting from signed to unsigned. The following example shows converting from twos complement -12345 to unsigned 53191:
+Essentially applies _U2T_ function to unsigned vars. Be careful when you are converting from signed to unsigned. The following example shows converting from twos complement -12345 to unsigned 53191:
 ```c
 short int v = -12345;
 unsigned short uv = (unsigned short) v;
@@ -511,12 +511,17 @@ u = 2147483648 = -2147483648
 _T2U<sub>32</sub>_(-1) = _UMax<sub>32</sub>_ = 2<sup>32</sup> = `printf("x = %u = %d\n", x, x);`  
 _U2T<sub>32</sub>_(2<sup>31</sup>) = 2<sup>31</sup> - 2<sup>32</sup> = -2<sup>31</sup> = _TMin<sub>32</sub>_ = `printf("u = %u = %d\n", u, u);`
 
-- when an operation is performed with a signed and unsigned, C casts the signed to unsigned automatically
+- when an operation is performed with a signed and unsigned, C casts the signed to unsigned automatically and performs the operations assuming the numbers are nonnegative.
+- This is complicated by comparison (<, >, ==) operators
+
+### Example
+`-1 < OU` - the `-1` is implicityly cast to unsigned, which turns it into `4294967295U`, which is obviously greater than 0 unsigned.
 
 ## 2.2.6 Expanding the Bit Representation of a Number
 Conversion is different when it involves different word sizes. Converting from smaller to larger should always be possible.
 - To convert an unsigned to a larger data type, add leading 0s - called _zero extension_
 - To convert a twos-complement number to a larger data type, use _sign extension_, which is adding leading copies of the MSB to the number
+
 ### Examples
 Extending the word size from w=3 to w=4
 ```c
@@ -572,17 +577,19 @@ short sx = (short) x; /* -12345 */
 int y = sx;           /* -12345 */
 ```
 ### PRINCIPLE: Truncation of an unsigned number
-Let x = _B2U<sub>k</sub>(x)_ and let x' = _B2U<sub>k</sub>(x)_. x' = x mod 2<sup>k</sup>
+- Replace any 
+Let x = _B2U<sub>k</sub>(x)_ and let x' = _B2U<sub>k</sub>(x)_. x' = x mod 2<sup>k</sup>  
+
 
 ### PRINCIPLE: Truncation of a twos-complement number
-x = _U2T<sub>k</sub>(x mod 2<sup>k</sup>)
+x = _U2T<sub>k</sub>_(x mod 2<sup>k</sup>)
 
 - One trick is to never use unsigned numbers 
 
 ## 2.3 Integer Arithmetic
 
 ### 2.3.1 Unsigned Addition
-When 0 <= x, y < 2<sup>w</sup>, 0 <= x + y < 2<sup>w11</sup> - 2  
+When 0 <= x, y < 2<sup>w</sup>, 0 <= x + y < 2<sup>w+1</sup> - 2  
 - So, with 4 bits, x or y can range from 0 - 15, but the sum can range from 0 - 30.
 - 4-bit example: 0 <= x + y < 2<sup>w=1</sup> - 2    =    0 <= x + y < 2<sup>5</sup> - 2   =   0 <= x + y < 32 - 2   =   0 <= x + y < 32 - 2
 - _word size inflation_ - If we retain this sum and add it to another value, it would require w + 2 bits  
@@ -606,5 +613,5 @@ Defining operation +<sup>u</sup><sub>w</sub> in theory and then with 4 bits wher
 | x + y < 2<sup>w</sup>  | 2<sup>w</sup> <= x + y < 2<sup>w+1</sup> |
 | 9 + 9 < 16             | 16 <= 9 + 9 < 32 |
 
-
-x +<sup>u</sup><sub>w</sub> = x + y 
+### PRINCIPLE
+When x and y in the range 0 < x, y <= _UMax<sub>w</sub>_, let s = x + y. The computation overflows IFF s < x or s < y.

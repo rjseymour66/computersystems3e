@@ -388,7 +388,7 @@ The for loop has `<= length -1`, which makes it a negative number. Change the co
 ## 2.25 Practice Problem
 
 A. If the returned value is less than 0, then there will be a memory error.  
-B. strlen returns an unsigned result, so a negative number would be a large, unsigned number
+B. strlen returns an unsigned result, so a negative number would be a large, unsigned number  
 C. Change the return statement to return the longer string: 
 
 ```c
