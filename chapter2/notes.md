@@ -630,3 +630,16 @@ Every element has an additive inverse.
 ```
 -3 = 16 - 3 = 13 = D
 ```
+
+### 2.3.2 Two's-Complement Addition
+Must decide what to do when the number is too large or too small to represent.  
+- Available range for 2C is -2<sup>w-1</sup> <= x, y <= 2<sup>w-1</sup> -1
+- The answer is the result of truncating the integer sum and then viewing the result as a two's-complement number.
+
+### PRINCIPLE
+For integer values `x` and `y` in the range -2<sup>w-1</sup> <= x, y <= 2<sup>w-1</sup> -1: 
+
+|      Type         |       x value           | Equation                                     | Example |
+| Positive overflow | x + y - 2<sup>w-1</sup> | 2<sup>w-1</sup> <= x + y                     | |
+| Normal            | x + y                   | -2<sup>w-1</sup> <= x + y <= 2<sup>w-1</sup> |  |
+| Negative overflow | x + y - 2<sup>w</sup>   | x + y < -2<sup>w-1</sup>                     | |
