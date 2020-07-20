@@ -636,11 +636,16 @@ Must decide what to do when the number is too large or too small to represent.
 - Available range for 2C is -2<sup>w-1</sup> <= x, y <= 2<sup>w-1</sup> -1
 - The answer is the result of truncating the integer sum and then viewing the result as a two's-complement number.
 
+### Rules
+1. If the sum of two positive numbers yields a negative result, the sum has overflowed.
+2. If the sum of two negative numbers yields a positive result, the sum has overflowed.
+3. Otherwise, the sum has not overflowed.
+
 ### PRINCIPLE
 For integer values `x` and `y` in the range -2<sup>w-1</sup> <= x, y <= 2<sup>w-1</sup> -1: 
 
-|      Type         |       x value           | Equation                                     | Example |
-|:------------------|:------------------------|:---------------------------------------------|:------------------|
-| Positive overflow | x + y - 2<sup>w-1</sup> | 2<sup>w-1</sup> <= x + y                     | |
-| Normal            | x + y                   | -2<sup>w-1</sup> <= x + y <= 2<sup>w-1</sup> |  |
-| Negative overflow | x + y - 2<sup>w</sup>   | x + y < -2<sup>w-1</sup>                     | |
+|      Type         |          Filter                                 |             x value                          | Example where `w = 4` |
+|:------------------|:------------------------------------------------|:---------------------------------------------|:----------------------|
+| Positive overflow | 2<sup>w-1</sup> <= x + y                        |      x + y - 2<sup>w</sup>                   | C + 8 - 16 = 4        |
+| Normal            | -2<sup>w-1</sup> <= x + y <= 2<sup>w-1</sup>    |      x + y                                   | 3 + 7 = A             |
+| Negative overflow |  x + y < -2<sup>w-1</sup>                       |      x + y + 2<sup>w-1</sup>                 | F + -3 + 16 = 2       |
