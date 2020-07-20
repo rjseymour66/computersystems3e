@@ -405,3 +405,14 @@ int uadd_ok(unsigned x, unsigned y) {
    return sum >= x;
 }
 ```
+
+## 2.28 Practice Problem
+
+| x      |     x       |       -x    |      -x |
+|:------:|:-----------:|:-----------:|:-------:|
+|**Hex** | **Decimal** | **Decimal** | **Hex** |
+| 0      |  0          |     0       |     |
+| 5      |  5          |    -5       |     |
+| 8      |  8          |    -8       |     |
+| D      |  13         |    -13      |     |
+| F      |  15         |    -15      |     |

@@ -615,3 +615,18 @@ Defining operation +<sup>u</sup><sub>w</sub> in theory and then with 4 bits wher
 
 ### PRINCIPLE
 When x and y in the range 0 < x, y <= _UMax<sub>w</sub>_, let s = x + y. The computation overflows IFF s < x or s < y.
+
+#### Unsigned negation
+Every element has an additive inverse.
+
+| x value | Forumla           |
+|:-------:|:-----------------:|
+| x = 0   |    x              |
+| x > 0   | 2<sup>w</sup> - x | 
+
+### Examples
+1. If x = 0, the only way to make it 0 is by adding 0.
+2. If we are using 4 bits and x = 3, the number is in the range 0 < 2<sup>w</sup> - x < 2<sup>w</sup> because 0 < 16 - 3 < 16. So, the following is the inverse:
+```
+-3 = 16 - 3 = 13 = D
+```
