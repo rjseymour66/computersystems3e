@@ -671,3 +671,21 @@ For integer values `x` and `y` in the range -2<sup>w-1</sup> <= x, y <= 2<sup>w-
 ```
 
 ## 2.3.4 Unsigned Multiplication
+Multiplying two unsigned numbers could equal 2<sup>w</sup> bits to represent.
+- Truncate the product to _w_ bits
+- Equivalent of computing its value modulo 2<sup>w</sup>
+
+### PRINCIPLE
+For x and y such that 0 <= x, y <= _UMax<sup>w</sup>_:  
+x * y = (x * y) mod 2<sup>w</sup>
+
+## 2.3.5 Two's-Commplement Multiplication
+Multiplying two unsigned numbers could equal 2<sup>w</sup> bits to represent.
+- Truncate the product to _w_ bits
+
+1. Compute its value modulo 2<sup>w</sup>
+2. Convert from unsigned to two's-complement
+
+### PRINCIPLE
+For x and y such that _TMin<sup>w</sup>_ <= x, y <= _TMax<sup>w</sup>_:  
+x * y = _U2T<sub>w</sub>_((x * y) mod 2<sup>w</sup>)
