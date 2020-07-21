@@ -430,6 +430,30 @@ Cases
 |:-----------:|:-----------:|:------------:|:-----------:|:-------:|
 | [10100] -12 | [10001] -15 | [100101] -27 | [00101]   5 |  1      |
 | [11000]  -8 | [11000]  -8 | [110000] -16 | [10000] -16 |  2      |
-| [10111]   9 | [01000]   8 | [111111] -17 | [11111]  -1 |  4      |
+| [10111]  -9 | [01000]   8 | [111111]  -1 | [11111]  -1 |  2      |
 | [00010]   2 | [00101]   5 | [000111]   7 | [00111]   7 |  3      |
 | [01100]  12 | [00100]   4 | [010000]  16 | [10000] -16 |  4      |
+
+
+## 2.30 Practice Problem
+
+```c
+int tadd_ok(int x, int y){
+   int sum = x + y;
+   int neg_over = x < 0 && y < 0 && sum >= 0;
+   int pos_over = x >= 0 && y >= 0 && sum < 0;
+   return !neg_over && !pos_over;
+}
+```
+
+## 2.31 Practice Problem
+All this code does is return whether x is x and y is y. It does not take into account whether they produce over or underflow.
+
+## 2.32 Practice Problem
+
+```c
+int tsub_ok(int x, int y) {
+   return tadd_ok(x, -y);
+}
+
+If x is less than 0 and y is less than 0. When y is greater than x, it returns an incorrect answer.

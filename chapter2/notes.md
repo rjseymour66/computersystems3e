@@ -649,3 +649,11 @@ For integer values `x` and `y` in the range -2<sup>w-1</sup> <= x, y <= 2<sup>w-
 | Positive overflow | 2<sup>w-1</sup> <= x + y                        |      x + y - 2<sup>w</sup>                   | C + 8 - 16 = 4        |
 | Normal            | -2<sup>w-1</sup> <= x + y <= 2<sup>w-1</sup>    |      x + y                                   | 3 + 7 = A             |
 | Negative overflow |  x + y < -2<sup>w-1</sup>                       |      x + y + 2<sup>w-1</sup>                 | F + -3 + 16 = 2       |
+
+## 2.3.3 Two's Complement Negation
+|       x value           | inverse value       |
+|:-----------------------:|:--------------------|
+|  x = _TMin<sub>w</sub>_ | _TMin<sub>w</sub>_  |
+| x > _TMin<sub>w</sub>_  | -x                  |
+
+- _TMin<sub>w</sub>_ is its own additive inverse because -2<sup>w-1</sup> + -2<sup>w-1</sup> = -2<sup>w</sup>, so that causes negative overflow where 2<sup>w</sup> + -2<sup>w</sup> = 0.
