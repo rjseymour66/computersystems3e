@@ -457,3 +457,16 @@ int tsub_ok(int x, int y) {
 }
 
 If x is less than 0 and y is less than 0. When y is greater than x, it returns an incorrect answer.
+
+```
+
+## 2.33 Practice Problem
+
+|    x    |      x      |   -x (2C)   | -x (2C) |
+|:-------:|:-----------:|:-----------:|:-------:|
+| **Hex** | **Decimal** | **Decimal** | **Hex** |
+|   0     |     0       |      0      |    0    |
+|   5     |    -5       |     -5      |    B    |
+|   8     |    -8       |     -8      |    8    |
+|   D     |    -3       |      3      |    3    |
+|   F     |    -1       |      1      |    1    |

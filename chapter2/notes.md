@@ -657,3 +657,17 @@ For integer values `x` and `y` in the range -2<sup>w-1</sup> <= x, y <= 2<sup>w-
 | x > _TMin<sub>w</sub>_  | -x                  |
 
 - _TMin<sub>w</sub>_ is its own additive inverse because -2<sup>w-1</sup> + -2<sup>w-1</sup> = -2<sup>w</sup>, so that causes negative overflow where 2<sup>w</sup> + -2<sup>w</sup> = 0.
+- Another way to negate two's complement is the following:
+   - Start at the right 
+   - Move left until you find your first `1`
+   - leave that `1` alone, but flip the bit for every digit to the left of it
+
+### Examples 
+```
+1100 = 0100
+1000 = 1000
+0101 = 1011
+0111 = 1001
+```
+
+## 2.3.4 Unsigned Multiplication
